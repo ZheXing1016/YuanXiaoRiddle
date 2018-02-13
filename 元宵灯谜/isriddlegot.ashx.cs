@@ -9,6 +9,7 @@ namespace 元宵灯谜
 {
     /// <summary>
     /// 判断题目是否被选掉了
+    /// 2018-2-13 部署到服务器上还有点问题
     /// </summary>
     public class isriddlegot : IHttpHandler
     {
@@ -16,17 +17,17 @@ namespace 元宵灯谜
         public void ProcessRequest(HttpContext context)
         {
 
-            string CHECKRIDDLE = context.Request.Form["CHECKRIDDLE"];
+            string CHECKRIDDLE = context.Request.Form["CHECKRIDDLE"];//获取题组号
             yuanxiao.LoginMoudle status = new yuanxiao.LoginMoudle();
-            string gotPID = dbwork.SelectSingle("PID", "RiddleGroup", $" GID={CHECKRIDDLE}");
+            string gotPID = dbwork.SelectSingle("PID", "RiddleGroup", $" GID={CHECKRIDDLE}");//查询对应题组号用户ID的值，如果为0，那说明没有，如果有，就要查询到对应用户ID的名字并返回
             if (gotPID != "0")
             {
                 string username = dbwork.SelectSingle("Pname", "Persons", $" PID={gotPID}");
-                status.status = username;
+                status.status = username;//如果已经被选掉了，就返回被谁选掉了
             }
             else
             {
-                status.status = "0";
+                status.status = "0";//没有人选调，就返回0
             }
             context.Response.Write(JsonConvert.SerializeObject(status));
             context.Response.End();

@@ -23,8 +23,10 @@ namespace yuanxiao
         public string APNAME { set; get; }
     }
     public class riddleGet
-    {        
-        public riddles riddles { set; get; } 
+    {   
+        public string totalpage { set; get; }
+        public string lastgid { set; get; }
+        public IList<riddles> Riddles{ set; get; } 
     }
    
 }

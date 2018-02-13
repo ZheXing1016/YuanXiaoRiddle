@@ -13,8 +13,19 @@ namespace CommonClass
             OleDbConnection conn = new OleDbConnection(getconnstr.connstr);
             OleDbCommand comm = new OleDbCommand();
             comm.Connection = conn;
-            conn.Open();
+            conn.Open();            
             comm.CommandText = "select "+ col +" from "+ tablename +" where "+ foctrystr +"";
+            string val = comm.ExecuteScalar().ToString();
+            conn.Close();
+            return val;
+        }
+        public static string SelectSingle(string col, string tablename)//输入查找列，表名和查找条件（where后面的内容）返回一条内容
+        {
+            OleDbConnection conn = new OleDbConnection(getconnstr.connstr);
+            OleDbCommand comm = new OleDbCommand();
+            comm.Connection = conn;
+            conn.Open();
+            comm.CommandText = "select " + col + " from " + tablename ;
             string val = comm.ExecuteScalar().ToString();
             conn.Close();
             return val;
