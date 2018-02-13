@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<main>
+<edition>1.0</edition>    
+<copyright>版权</copyright>     
+<article>     
+<title></title> 
+<caption></caption> 
+<leadtitle ></leadtitle> 
+<linktitle></linktitle> 
+<author></author> 
+<source>县新闻传媒发展中心</source>
+<keyword></keyword> 
+<brief></brief> 
+<describe></describe> 
+<datetime></datetime> 
+<text></text> 
+<webgroupid></webgroupid> 
+<webgroup></webgroup> 
+<webid>1</webid> 
+<web>中国·德清</web> 
+<column>信息抓取</column> 
+<columnid>1182</columnid> 
+<type></type> 
+<url></url> 
+<infoimage>                  
+<name></name> 
+<data></data> 
+</infoimage> 
+<infoattach>                   
+<name></name> 
+<data></data> 
+</infoattach> 
+<objects>                         
+<object> 
+<type></type> 
+<name></name> 
+<data></data> 
+</object > 
+</objects> 
+</article> 
+</main> 

@@ -1,0 +1,17 @@
+F:\云盘同步文件夹\C#\信息抓取2\信息抓取2\信息抓取2\bin\Debug\信息抓取2.exe.config
+F:\云盘同步文件夹\C#\信息抓取2\信息抓取2\信息抓取2\obj\Debug\信息抓取2.Properties.Resources.resources
+F:\云盘同步文件夹\C#\信息抓取2\信息抓取2\信息抓取2\obj\Debug\信息抓取2.csproj.GenerateResource.Cache
+F:\云盘同步文件夹\C#\信息抓取2\信息抓取2\信息抓取2\bin\Debug\信息抓取2.exe
+F:\云盘同步文件夹\C#\信息抓取2\信息抓取2\信息抓取2\bin\Debug\信息抓取2.pdb
+F:\云盘同步文件夹\C#\信息抓取2\信息抓取2\信息抓取2\bin\Debug\HtmlAgilityPack.dll
+F:\云盘同步文件夹\C#\信息抓取2\信息抓取2\信息抓取2\bin\Debug\HtmlAgilityPack.pdb
+F:\云盘同步文件夹\C#\信息抓取2\信息抓取2\信息抓取2\bin\Debug\HtmlAgilityPack.xml
+F:\云盘同步文件夹\C#\信息抓取2\信息抓取2\信息抓取2\obj\Debug\信息抓取2.exe
+F:\云盘同步文件夹\C#\信息抓取2\信息抓取2\信息抓取2\obj\Debug\信息抓取2.pdb
+F:\云盘同步文件夹\C#\信息抓取2\信息抓取2\信息抓取2\obj\Debug\信息抓取2.fm_main.resources
+F:\云盘同步文件夹\C#\信息抓取2\信息抓取2\信息抓取2\obj\Debug\信息抓取2.fm_regular.resources
+F:\云盘同步文件夹\C#\信息抓取2\信息抓取2\信息抓取2\bin\Debug\Xmls\HuHang.xml
+F:\云盘同步文件夹\C#\信息抓取2\信息抓取2\信息抓取2\bin\Debug\Xmls\StoreXml.xml
+F:\云盘同步文件夹\C#\信息抓取2\信息抓取2\信息抓取2\bin\Debug\Xmls\customer.xml
+F:\云盘同步文件夹\C#\信息抓取2\信息抓取2\信息抓取2\obj\Debug\信息抓取2.csprojResolveAssemblyReference.cache
+F:\云盘同步文件夹\C#\信息抓取2\信息抓取2\信息抓取2\bin\Debug\Xmls\ne.xml
