@@ -71,6 +71,7 @@
     <Content Include="Login.ashx" />
     <Content Include="uncompeletedCheck.ashx" />
     <Content Include="getriddle.ashx" />
+    <Content Include="isriddlegot.ashx" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="pushcosttime.ashx" />
@@ -93,6 +94,9 @@
     <Compile Include="Class\Initilazition.cs" />
     <Compile Include="getriddle.ashx.cs">
       <DependentUpon>getriddle.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="isriddlegot.ashx.cs">
+      <DependentUpon>isriddlegot.ashx</DependentUpon>
     </Compile>
     <Compile Include="Login.ashx.cs">
       <DependentUpon>Login.ashx</DependentUpon>

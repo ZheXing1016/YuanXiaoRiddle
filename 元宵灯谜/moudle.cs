@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web;
+using Newtonsoft.Json;
 
 namespace yuanxiao
 {
@@ -15,4 +16,15 @@ namespace yuanxiao
         public string PNUM { set; get; }
         public string COSTTIME { set; get; }
     }
+
+    public class riddles
+    {
+        public string GID { set; get; }
+        public string APNAME { set; get; }
+    }
+    public class riddleGet
+    {        
+        public riddles riddles { set; get; } 
+    }
+   
 }
