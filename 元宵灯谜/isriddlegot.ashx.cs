@@ -16,7 +16,7 @@ namespace 元宵灯谜
 
         public void ProcessRequest(HttpContext context)
         {
-
+            yuanxiao.Initilazition.Init();
             string CHECKRIDDLE = context.Request.Form["CHECKRIDDLE"];//获取题组号
             yuanxiao.LoginMoudle status = new yuanxiao.LoginMoudle();
             string gotPID = dbwork.SelectSingle("PID", "RiddleGroup", $" GID={CHECKRIDDLE}");//查询对应题组号用户ID的值，如果为0，那说明没有，如果有，就要查询到对应用户ID的名字并返回

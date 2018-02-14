@@ -15,6 +15,7 @@ namespace 元宵灯谜
 
         public void ProcessRequest(HttpContext context)
         {
+            yuanxiao.Initilazition.Init();
             string GID = context.Request.Form["GID"];
             string COSTTIME = context.Request.Form["COSTTIME"];
             dbwork.UpdateSet("Rcosttime`Lasttime", $"{COSTTIME}`{DateTime.Now.ToString()}", "RiddleGroup", $" GID={GID}");
