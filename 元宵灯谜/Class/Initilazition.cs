@@ -13,7 +13,7 @@ namespace yuanxiao
             getconnstr.connstr = @"Provider=Microsoft.Ace.OleDb.12.0;Data Source="+
                 AppDomain.CurrentDomain.BaseDirectory
                 + @"\maindb.accdb;Persist Security Info=False;";
-            takeMaxRowsCount();
+           
         }
         public static void takeMaxRowsCount()
         {

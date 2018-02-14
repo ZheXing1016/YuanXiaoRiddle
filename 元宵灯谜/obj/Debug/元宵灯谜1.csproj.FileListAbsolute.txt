@@ -53,3 +53,4 @@ F:\GitHub\YuanXiaoRiddle\元宵灯谜\bin\Newtonsoft.Json.dll
 F:\GitHub\YuanXiaoRiddle\元宵灯谜\obj\Debug\元宵灯谜1.csproj.CoreCompileInputs.cache
 F:\GitHub\YuanXiaoRiddle\元宵灯谜\obj\Debug\元宵灯谜.dll
 F:\GitHub\YuanXiaoRiddle\元宵灯谜\obj\Debug\元宵灯谜.pdb
+F:\GitHub\YuanXiaoRiddle\元宵灯谜\obj\Debug\元宵灯谜1.csprojResolveAssemblyReference.cache
