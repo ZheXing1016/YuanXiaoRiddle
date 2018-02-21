@@ -9,7 +9,7 @@ namespace 元宵灯谜
 {
     /// <summary>
     /// 2018-2-13 具体选题的算法还没有完成
-    /// 2018-2-14 目前还为换成循环节点位置的排序，如正常应该是8,9,1,2,3，目前出来的是1,2,3,8,9
+    /// 2018-2-14 目前还未完成循环节点位置的排序，如正常应该是8,9,1,2,3，目前出来的是1,2,3,8,9
     /// </summary>
     public class getriddle : IHttpHandler
     {
@@ -18,8 +18,8 @@ namespace 元宵灯谜
         {
             yuanxiao.Initilazition.takeMaxRowsCount();
             /*yuanxiao.Initilazition.MaxRowsCount = 4*/
-            ;
 
+            yuanxiao.Initilazition.Init();
             string PAGE = context.Request.Form["PAGE"];
             string LIMIT = context.Request.Form["LIMIT"];
             string LASTGID = context.Request.Form["LASTGID"];
@@ -93,7 +93,7 @@ namespace 元宵灯谜
                     if (reGID == StartPageStartVal)
                     {
                         pushlastGID = (reGID - 1).ToString();//考虑最后不一定能够达到limit的数量，所以破的时候也需要记录lastGID
-                        if(pushlastGID=="0")
+                        if(pushlastGID=="0")//还是存在%计算时候，出现的边界情况
                         {
                             pushlastGID = yuanxiao.Initilazition.MaxRowsCount.ToString();
                         }

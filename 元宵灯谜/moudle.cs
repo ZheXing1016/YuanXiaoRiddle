@@ -28,5 +28,25 @@ namespace yuanxiao
         public string lastgid { set; get; }
         public IList<riddles> Riddles{ set; get; } 
     }
+
+
+    public class selection
+    {
+        public string a { set; get; }
+        public string b { set; get; }
+        public string c { set; get; }
+        public string d { set; get; }
+    }
+
+    public class riddleContentGet
+    {
+        public string rquestion { set; get; }
+        public selection ranswers { set; get; }
+    }
+
+    public class resultModule
+    {
+        public string result { set; get; }
+    }
    
 }

@@ -15,7 +15,12 @@ namespace CommonClass
             comm.Connection = conn;
             conn.Open();            
             comm.CommandText = "select "+ col +" from "+ tablename +" where "+ foctrystr +"";
-            string val = comm.ExecuteScalar().ToString();
+            object ExecuteScalarTmp = comm.ExecuteScalar();
+            string val = "";
+            if (ExecuteScalarTmp!=null)
+            {
+                val = ExecuteScalarTmp.ToString();
+            }            
             conn.Close();
             return val;
         }
@@ -26,7 +31,12 @@ namespace CommonClass
             comm.Connection = conn;
             conn.Open();
             comm.CommandText = "select " + col + " from " + tablename ;
-            string val = comm.ExecuteScalar().ToString();
+            object ExecuteScalarTmp = comm.ExecuteScalar();
+            string val = "";
+            if (ExecuteScalarTmp != null)
+            {
+                val = ExecuteScalarTmp.ToString();
+            }
             conn.Close();
             return val;
         }

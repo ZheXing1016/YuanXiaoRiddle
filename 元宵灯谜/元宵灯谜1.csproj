@@ -72,6 +72,8 @@
     <Content Include="uncompeletedCheck.ashx" />
     <Content Include="getriddle.ashx" />
     <Content Include="isriddlegot.ashx" />
+    <Content Include="answering.ashx" />
+    <Content Include="chooseriddle.ashx" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="pushcosttime.ashx" />
@@ -89,6 +91,12 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="answering.ashx.cs">
+      <DependentUpon>answering.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="chooseriddle.ashx.cs">
+      <DependentUpon>chooseriddle.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Class\dbworkforoledb.cs" />
     <Compile Include="Class\getconnstr.cs" />
     <Compile Include="Class\Initilazition.cs" />
