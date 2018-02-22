@@ -15,35 +15,44 @@ namespace yuanxiao
        
         public void ProcessRequest(HttpContext context)
         {
-            Initilazition.Init();
-            string Username = context.Request.Form["USER"];
-            string Password = context.Request.Form["PASSWORD"];
-            LoginMoudle login = new LoginMoudle();
-            if (isLoginOK(Username, Password))
+            try
             {
-                string uncompeleted = uncompeletedCheck.isNoPauseAnswer(Username);
-                switch (uncompeleted)
+                Initilazition.Init();
+                string Username = context.Request.Form["USER"];
+                string Password = context.Request.Form["PASSWORD"];
+                logging.Infolog($"login.ashx GET Username={Username},Password={Password}");
+                LoginMoudle login = new LoginMoudle();
+                if (isLoginOK(Username, Password))
                 {
-                    case "error":
-                        login.status = "error";
-                        break;
-                    case "":
-                        login.status = "0";
-                        break;
-                    default:
-                        login.status = "1";
-                        break;
+                    string uncompeleted = uncompeletedCheck.isNoPauseAnswer(Username);
+                    switch (uncompeleted)
+                    {
+                        case "error":
+                            login.status = "error";
+                            break;
+                        case "":
+                            login.status = "0";
+                            break;
+                        default:
+                            login.status = "1";
+                            break;
+                    }
                 }
-            }
-            else
-            {
-                login.status = "-1";
-            }
+                else
+                {
+                    login.status = "-1";
+                }
 
-            string reval = JsonConvert.SerializeObject(login);//转成对应的json
-            //LoginMoudle.status=1  =>  {"status":"1"};
-            context.Response.Write(reval);
-            context.Response.End();
+                string reval = JsonConvert.SerializeObject(login);//转成对应的json
+                                                                  //LoginMoudle.status=1  =>  {"status":"1"};
+                context.Response.Write(reval);
+                logging.Infolog($"login.ashx RETURN {reval}");
+                context.Response.End();
+            }
+            catch(Exception ex)
+            {
+                logging.Errorlog(ex.ToString());
+            }
 
         }
 

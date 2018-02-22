@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -74,6 +77,7 @@
     <Content Include="isriddlegot.ashx" />
     <Content Include="answering.ashx" />
     <Content Include="chooseriddle.ashx" />
+    <Content Include="log4net.config" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="pushcosttime.ashx" />
@@ -88,7 +92,6 @@
   <ItemGroup>
     <Content Include="mainAnwser.aspx" />
     <Content Include="maindb.accdb" />
-    <Content Include="result.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +110,7 @@
     <Compile Include="isriddlegot.ashx.cs">
       <DependentUpon>isriddlegot.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Class\logging.cs" />
     <Compile Include="Login.ashx.cs">
       <DependentUpon>Login.ashx</DependentUpon>
     </Compile>
@@ -125,16 +129,12 @@
     <Compile Include="result.ashx.cs">
       <DependentUpon>result.ashx</DependentUpon>
     </Compile>
-    <Compile Include="result.aspx.cs">
-      <DependentUpon>result.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="result.aspx.designer.cs">
-      <DependentUpon>result.aspx</DependentUpon>
-    </Compile>
     <Compile Include="uncompeletedCheck.ashx.cs">
       <DependentUpon>uncompeletedCheck.ashx</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="logfile\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

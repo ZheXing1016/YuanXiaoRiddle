@@ -17,26 +17,35 @@ namespace yuanxiao
 
         public void ProcessRequest(HttpContext context)
         {
-            Initilazition.Init();
-            riddleUncompeletedMoudle rum = new riddleUncompeletedMoudle();
-            string username = context.Request.Form["UNCOMPELETED"];
-            string uncompeleted = isNoPauseAnswer(username);
-            if (uncompeleted == "")
+            try
             {
-                rum.RID = "";
-                rum.PNUM = "";
-                rum.COSTTIME = "";
+                Initilazition.Init();
+                riddleUncompeletedMoudle rum = new riddleUncompeletedMoudle();
+                string username = context.Request.Form["UNCOMPELETED"];
+                logging.Infolog($"uncompeletedCheck.ashx GET UNCOMPELETED={username}");
+                string uncompeleted = isNoPauseAnswer(username);
+                if (uncompeleted == "")
+                {
+                    rum.RID = "";
+                    rum.PNUM = "";
+                    rum.COSTTIME = "";
+                }
+                else
+                {
+                    string[] rumtmp = uncompeleted.Split('~');
+                    rum.RID = rumtmp[0];
+                    rum.PNUM = rumtmp[1];
+                    rum.COSTTIME = rumtmp[2];
+                }
+                string reval = JsonConvert.SerializeObject(rum);
+                context.Response.Write(reval);
+                logging.Infolog($"uncompeletedCheck.ashx RETURN {reval}");
+                context.Response.End();
             }
-            else
+            catch (Exception ex)
             {
-                string[] rumtmp = uncompeleted.Split('~');
-                rum.RID = rumtmp[0];
-                rum.PNUM = rumtmp[1];
-                rum.COSTTIME = rumtmp[2];
+                logging.Errorlog(ex.ToString());
             }
-            string reval = JsonConvert.SerializeObject(rum);
-            context.Response.Write(reval);
-            context.Response.End();
         }
 
 

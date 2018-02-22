@@ -16,41 +16,49 @@ namespace 元宵灯谜
        
         public void ProcessRequest(HttpContext context)
         {
-            yuanxiao.Initilazition.takeMaxRowsCount();
-            /*yuanxiao.Initilazition.MaxRowsCount = 4*/
-
-            yuanxiao.Initilazition.Init();
-            string PAGE = context.Request.Form["PAGE"];
-            string LIMIT = context.Request.Form["LIMIT"];
-            string LASTGID = context.Request.Form["LASTGID"];
-
-            string[] RiddleListTmp = pushRiddle(PAGE, LIMIT, LASTGID).Split('~');
-
-            yuanxiao.riddleGet rg = new yuanxiao.riddleGet();
-            rg.Riddles = new List<yuanxiao.riddles>();
-            yuanxiao.riddles RiddleVal = new yuanxiao.riddles();//riddles的类，是在riddleGet类中的一个小类，用于存储题组号和答题人
-            if (yuanxiao.Initilazition.MaxRowsCount % Convert.ToInt16(LIMIT) == 0)
-                rg.totalpage = (yuanxiao.Initilazition.MaxRowsCount / Convert.ToInt16(LIMIT)).ToString();//获取totalpage最大页数
-            else
-                rg.totalpage = (yuanxiao.Initilazition.MaxRowsCount / Convert.ToInt16(LIMIT) + 1).ToString();//获取totalpage最大页数，不能整除最后要+1
-            for (int i = 0; i < RiddleListTmp.Length-1; i++)
+            try
             {
+                yuanxiao.Initilazition.takeMaxRowsCount();
+                /*yuanxiao.Initilazition.MaxRowsCount = 4*/
 
-                if (i % 2 == 0)
-                {
-                    RiddleVal.GID = RiddleListTmp[i];//添加题组号                   
-                }
+                yuanxiao.Initilazition.Init();
+                string PAGE = context.Request.Form["PAGE"];
+                string LIMIT = context.Request.Form["LIMIT"];
+                string LASTGID = context.Request.Form["LASTGID"];
+                logging.Infolog($"getriddle.ashx GET PAGE={PAGE},LIMIT={LIMIT},LASTGID={LASTGID}");
+
+                string[] RiddleListTmp = pushRiddle(PAGE, LIMIT, LASTGID).Split('~');
+                yuanxiao.riddleGet rg = new yuanxiao.riddleGet();
+                rg.Riddles = new List<yuanxiao.riddles>();
+                yuanxiao.riddles RiddleVal = new yuanxiao.riddles();//riddles的类，是在riddleGet类中的一个小类，用于存储题组号和答题人
+                if (yuanxiao.Initilazition.MaxRowsCount % Convert.ToInt16(LIMIT) == 0)
+                    rg.totalpage = (yuanxiao.Initilazition.MaxRowsCount / Convert.ToInt16(LIMIT)).ToString();//获取totalpage最大页数
                 else
+                    rg.totalpage = (yuanxiao.Initilazition.MaxRowsCount / Convert.ToInt16(LIMIT) + 1).ToString();//获取totalpage最大页数，不能整除最后要+1
+                for (int i = 0; i < RiddleListTmp.Length - 1; i++)
                 {
-                    RiddleVal.APNAME = RiddleListTmp[i];//添加答题人
-                    rg.Riddles.Add(RiddleVal);
-                    RiddleVal = new yuanxiao.riddles();//由于类的存储采用的是指针，所以要new一个
+
+                    if (i % 2 == 0)
+                    {
+                        RiddleVal.GID = RiddleListTmp[i];//添加题组号                   
+                    }
+                    else
+                    {
+                        RiddleVal.APNAME = RiddleListTmp[i];//添加答题人
+                        rg.Riddles.Add(RiddleVal);
+                        RiddleVal = new yuanxiao.riddles();//由于类的存储采用的是指针，所以要new一个
+                    }
                 }
+                rg.lastgid = RiddleListTmp[RiddleListTmp.Length - 1];
+                string val = JsonConvert.SerializeObject(rg);
+                context.Response.Write(val);
+                logging.Infolog($"getriddle.ashx RETURN {val}");
+                context.Response.End();
             }
-            rg.lastgid = RiddleListTmp[RiddleListTmp.Length - 1];
-            string val = JsonConvert.SerializeObject(rg);
-            context.Response.Write(val);
-            context.Response.End();
+            catch(Exception ex)
+            {
+                logging.Errorlog(ex.ToString());
+            }
         }
 
 

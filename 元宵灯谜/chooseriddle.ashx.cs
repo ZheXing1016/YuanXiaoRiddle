@@ -13,39 +13,48 @@ namespace 元宵灯谜
 
         public void ProcessRequest(HttpContext context)
         {
-            yuanxiao.Initilazition.Init();
-            string GID = context.Request.Form["GID"];
-            string USER = context.Request.Form["USER"];
-            yuanxiao.LoginMoudle status = new yuanxiao.LoginMoudle();
-            string GotName = CommonClass.dbwork.SelectSingle("Pname", "RiddleGroup", $" GID={GID}");
-            if(GotName=="")
-            {                
-                string PID= CommonClass.dbwork.SelectSingle("PID", "Persons", $" Pname='{USER}'");
-                if (PID == "")
+            try
+            {
+                yuanxiao.Initilazition.Init();
+                string GID = context.Request.Form["GID"];
+                string USER = context.Request.Form["USER"];
+                logging.Infolog($"chooseriddle.ashx GET GID={GID},USER={USER}");
+                yuanxiao.LoginMoudle status = new yuanxiao.LoginMoudle();
+                string GotName = CommonClass.dbwork.SelectSingle("Pname", "RiddleGroup", $" GID={GID}");
+                if (GotName == "")
                 {
-                    status.status = "error";
-                }
-                else
-                {
-                    int updateRowsCount = CommonClass.dbwork.UpdateSet("PID`Pname`Lasttime", $"{PID}`{USER}`{DateTime.Now.ToString()}", "RiddleGroup", $"GID={GID}");
-                    if (updateRowsCount > 0)
-                    {
-                        status.status = "ok";
-                    }
-                    else
+                    string PID = CommonClass.dbwork.SelectSingle("PID", "Persons", $" Pname='{USER}'");
+                    if (PID == "")
                     {
                         status.status = "error";
                     }
-                }
+                    else
+                    {
+                        int updateRowsCount = CommonClass.dbwork.UpdateSet("PID`Pname`Lasttime", $"{PID}`{USER}`{DateTime.Now.ToString()}", "RiddleGroup", $"GID={GID}");
+                        if (updateRowsCount > 0)
+                        {
+                            status.status = "ok";
+                        }
+                        else
+                        {
+                            status.status = "error";
+                        }
+                    }
 
+                }
+                else
+                {
+                    status.status = GotName;
+                }
+                string reval = Newtonsoft.Json.JsonConvert.SerializeObject(status);
+                context.Response.Write(reval);
+                logging.Infolog($"chooseriddle.ashx RETURN {reval}");
+                context.Response.End();
             }
-            else
+            catch(Exception ex)
             {
-                status.status = GotName;
+                logging.Errorlog(ex.ToString());
             }
-            string reval = Newtonsoft.Json.JsonConvert.SerializeObject(status);
-            context.Response.Write(reval);
-            context.Response.End();
         }
 
         public bool IsReusable

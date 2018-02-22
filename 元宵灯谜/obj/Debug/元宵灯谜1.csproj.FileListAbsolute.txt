@@ -54,3 +54,5 @@ F:\GitHub\YuanXiaoRiddle\元宵灯谜\obj\Debug\元宵灯谜1.csproj.CoreCompile
 F:\GitHub\YuanXiaoRiddle\元宵灯谜\obj\Debug\元宵灯谜.dll
 F:\GitHub\YuanXiaoRiddle\元宵灯谜\obj\Debug\元宵灯谜.pdb
 F:\GitHub\YuanXiaoRiddle\元宵灯谜\obj\Debug\元宵灯谜1.csprojResolveAssemblyReference.cache
+F:\GitHub\YuanXiaoRiddle\元宵灯谜\bin\log4net.dll
+F:\GitHub\YuanXiaoRiddle\元宵灯谜\bin\log4net.xml
