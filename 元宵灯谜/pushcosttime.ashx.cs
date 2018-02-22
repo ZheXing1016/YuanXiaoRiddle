@@ -17,8 +17,7 @@ namespace 元宵灯谜
         {
             Logging logging = new Logging();
             try
-            {
-                yuanxiao.Initilazition.Init();
+            {               
                 string GID = context.Request.Form["GID"];
                 string COSTTIME = context.Request.Form["COSTTIME"];
                 logging.Infolog(typeof(pushcosttime), $"pushcosttime.ashx GET GID={GID},Password={COSTTIME}");

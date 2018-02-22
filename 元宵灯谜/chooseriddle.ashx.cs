@@ -31,7 +31,7 @@ namespace 元宵灯谜
                     }
                     else
                     {
-                        int updateRowsCount = CommonClass.dbwork.UpdateSet("PID`Pname`Lasttime", $"{PID}`{USER}`{DateTime.Now.ToString()}", "RiddleGroup", $"GID={GID}");
+                        int updateRowsCount = CommonClass.dbwork.UpdateSet("PID`Pname`Rrecord`Rcosttime`Lasttime", $"{PID}`{USER}`~~~~`00:00`{DateTime.Now.ToString()}", "RiddleGroup", $"GID={GID}");
                         if (updateRowsCount > 0)
                         {
                             status.status = "ok";

@@ -17,8 +17,8 @@ namespace 元宵灯谜
         public void ProcessRequest(HttpContext context)
         {
             Logging logging = new Logging();
-            try
-            {
+            //try
+            //{
                 yuanxiao.Initilazition.takeMaxRowsCount();
                 /*yuanxiao.Initilazition.MaxRowsCount = 4*/
 
@@ -55,16 +55,16 @@ namespace 元宵灯谜
                 context.Response.Write(val);
                 logging.Infolog(typeof(getriddle), $"getriddle.ashx RETURN {val}");
                 context.Response.End();
-            }
-            catch(Exception ex)
-            {
-                if (ex.Message != "正在中止线程。" && ex.Message != "Thread was being aborted.")
-                {
-                    logging.Errorlog(typeof(getriddle), ex.Message);
-                    context.Response.Write("app error");
-                    context.Response.End();
-                }
-            }
+            //}
+            //catch(Exception ex)
+            //{
+            //    if (ex.Message != "正在中止线程。" && ex.Message != "Thread was being aborted.")
+            //    {
+            //        logging.Errorlog(typeof(getriddle), ex.Message);
+            //        context.Response.Write("app error");
+            //        context.Response.End();
+            //    }
+            //}
         }
 
 
@@ -81,7 +81,7 @@ namespace 元宵灯谜
         {
             int startval = 0;
             string pushlastGID = "";
-            if (lastGID == "0")
+            if (lastGID == "0"||page=="1")
             {
                 Random rd = new Random();
                 startval = rd.Next(1, yuanxiao.Initilazition.MaxRowsCount);
@@ -92,18 +92,24 @@ namespace 元宵灯谜
             }
             string reval = "";
             DataTable PnameList = new DataTable();
-            string selectSTR = "";            
+            string selectSTR = "";
+            bool istostart = false;
             for (int i = 0; i < Convert.ToInt16(limit); i++)
             {
                 int reGID = (i + startval) % yuanxiao.Initilazition.MaxRowsCount;
                 if (reGID == 0)
                 {
                     reGID = yuanxiao.Initilazition.MaxRowsCount;
+                    istostart = true;
                 }
                 if (page != "1")
                 {
                     int StartPageStartVal = ((yuanxiao.Initilazition.MaxRowsCount + startval) -
                         Convert.ToInt32(limit) * (Convert.ToInt32(page) - 1)) % yuanxiao.Initilazition.MaxRowsCount;
+                    if(StartPageStartVal==0)
+                    {
+                        StartPageStartVal = yuanxiao.Initilazition.MaxRowsCount;
+                    }
                     if (reGID == StartPageStartVal)
                     {
                         pushlastGID = (reGID - 1).ToString();//考虑最后不一定能够达到limit的数量，所以破的时候也需要记录lastGID
@@ -124,7 +130,12 @@ namespace 元宵灯谜
             }
            
             selectSTR = $"select Pname,GID from RiddleGroup where {selectSTR.Substring(0, selectSTR.Length - 3)}";
+
             PnameList = CommonClass.dbwork.SelectMutily(selectSTR);
+            if(istostart)
+            {
+                PnameList = SortDivNum(PnameList);
+            }
             for (int i = 0; i < PnameList.Rows.Count; i++)
             {               
                 
@@ -132,6 +143,51 @@ namespace 元宵灯谜
             }
 
             return reval.Substring(0, reval.Length - 1)+"~"+pushlastGID;
+        }
+
+        DataTable SortDivNum(DataTable oldDataTable)
+        {
+            //先查分界点在哪个位置
+            int divnum = 0;//存放分界点的位置
+            for(int OldDataTableRowIndex=0;OldDataTableRowIndex<oldDataTable.Rows.Count;OldDataTableRowIndex++)
+            {
+                if (OldDataTableRowIndex == oldDataTable.Rows.Count - 1)
+                {
+                    divnum = 0;
+                }
+                else
+                {
+                    if (Convert.ToInt32(oldDataTable.Rows[OldDataTableRowIndex + 1][1]) - Convert.ToInt32(oldDataTable.Rows[OldDataTableRowIndex][1]) > 1)
+                    {
+                        divnum = OldDataTableRowIndex + 1;
+                        break;
+                    }
+                }
+            }
+
+            //然后根据分界点，把数值塞入dttmp当中
+            DataTable dttmp = new DataTable();
+            dttmp.Columns.Add();
+            dttmp.Columns.Add();
+            int OldDatatblePoint = divnum;
+            int dttmpIndex = 0;
+            while(true)
+            {
+                dttmp.Rows.Add();
+                dttmp.Rows[dttmpIndex][0] = oldDataTable.Rows[OldDatatblePoint][0];
+                dttmp.Rows[dttmpIndex][1] = oldDataTable.Rows[OldDatatblePoint][1];
+                OldDatatblePoint++;
+                if(OldDatatblePoint>=oldDataTable.Rows.Count)//当过了界，就回到开头
+                {
+                    OldDatatblePoint = 0;
+                }
+                if(OldDatatblePoint==divnum)//如果老表指针指到了divnum的位置，就跳出循环
+                {
+                    break;
+                }
+                dttmpIndex++;
+            }
+            return dttmp;
         }
 
         public bool IsReusable

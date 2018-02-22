@@ -16,7 +16,7 @@ namespace 元宵灯谜
 
         public void ProcessRequest(HttpContext context)
         {
-            Logging logging=new Logging();
+            Logging logging = new Logging();
             try
             {
                 yuanxiao.Initilazition.Init();
@@ -24,11 +24,11 @@ namespace 元宵灯谜
                 string PNUM = context.Request.Form["PNUM"];
                 string ANSWER = context.Request.Form["ANSWER"];
                 string COSTTIME = context.Request.Form["COSTTIME"];
-                logging.Infolog(typeof(answering) , $"answering.ashx GET GID={GID},PNUM={PNUM},ANSWER={ANSWER},COSTTIME={COSTTIME}");
+                logging.Infolog(typeof(answering), $"answering.ashx GET GID={GID},PNUM={PNUM},ANSWER={ANSWER},COSTTIME={COSTTIME}");
                 int updateconut = 0;
                 if (PNUM == "0")
                 {
-                    updateconut = dbwork.UpdateSet("Rrecord`Lasttime", $"~~~~`{DateTime.Now.ToString()}", "RiddleGroup", $" GID={GID}");
+                    updateconut = dbwork.UpdateSet("Rrecord`Lasttime", $"~~~~ `{DateTime.Now.ToString()}", "RiddleGroup", $" GID={GID}");
                     logging.Infolog(typeof(answering), $"answering.ashx DATA getNew");
                 }
                 else
@@ -36,7 +36,16 @@ namespace 元宵灯谜
                     string preresult = dbwork.SelectSingle("Rrecord",
                         "RiddleGroup", $" GID={GID}");//先获取原先的答案字符串
                     int nowIndex = Convert.ToInt16(PNUM);
-                    string nowresult = preresult.Insert((nowIndex - 1) * 2, ANSWER);//对应位置公式为（nowindex-1) * 2
+                    string nowresult = "";
+                    if (preresult[(nowIndex - 1) * 2] == '~')
+                    {
+                        nowresult = preresult.Insert((nowIndex - 1) * 2, ANSWER);//对应位置公式为（nowindex-1) * 2
+                    }
+                    else
+                    {
+                        nowresult = preresult.Remove((nowIndex - 1) * 2, 1);
+                        nowresult = nowresult.Insert((nowIndex - 1) * 2, ANSWER);
+                    }
                     updateconut = dbwork.UpdateSet("Rrecord`Rcosttime`Lasttime",
                         $"{nowresult}`{COSTTIME}`{DateTime.Now.ToString()}", "RiddleGroup", $" GID={GID}");
                     logging.Infolog(typeof(answering), $"answering.ashx DATA {preresult}->{nowresult}");
@@ -71,9 +80,9 @@ namespace 元宵灯谜
                 logging.Infolog(typeof(answering), $"answering.ashx RETURN {restr}");
                 context.Response.End();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                if (ex.Message != "正在中止线程。"||ex.Message== "Thread was being aborted.")
+                if (ex.Message != "正在中止线程。" && ex.Message == "Thread was being aborted.")
                 {
                     logging.Errorlog(typeof(answering), ex.Message);
                     context.Response.Write("app error");
@@ -81,7 +90,7 @@ namespace 元宵灯谜
                 }
             }
 
-           
+
         }
 
 

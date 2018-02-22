@@ -18,6 +18,7 @@ namespace 元宵灯谜
         {
             //系统启动时候，自动配置logconfig
             XmlConfigurator.Configure();
+            yuanxiao.Initilazition.Init();
             //ILoggerRepository LogRepository = LogManager.CreateRepository("YuanxiaoRepository");
             //XmlConfigurator.Configure(LogRepository, new FileInfo("log4net.config"));
             //Logging.log = LogManager.GetLogger(LogRepository.Name, "NETCorelog4net");
