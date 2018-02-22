@@ -24,12 +24,12 @@ namespace 元宵灯谜
                 string PNUM = context.Request.Form["PNUM"];
                 string ANSWER = context.Request.Form["ANSWER"];
                 string COSTTIME = context.Request.Form["COSTTIME"];
-                logging.Infolog(typeof(answering), $"answering.ashx GET GID={GID},PNUM={PNUM},ANSWER={ANSWER},COSTTIME={COSTTIME}");
+                logging.Infolog(typeof(answering), $" GET GID={GID},PNUM={PNUM},ANSWER={ANSWER},COSTTIME={COSTTIME}");
                 int updateconut = 0;
                 if (PNUM == "0")
                 {
                     updateconut = dbwork.UpdateSet("Rrecord`Lasttime", $"~~~~ `{DateTime.Now.ToString()}", "RiddleGroup", $" GID={GID}");
-                    logging.Infolog(typeof(answering), $"answering.ashx DATA getNew");
+                    logging.Infolog(typeof(answering), $" DATA getNew");
                 }
                 else
                 {
@@ -48,7 +48,7 @@ namespace 元宵灯谜
                     }
                     updateconut = dbwork.UpdateSet("Rrecord`Rcosttime`Lasttime",
                         $"{nowresult}`{COSTTIME}`{DateTime.Now.ToString()}", "RiddleGroup", $" GID={GID}");
-                    logging.Infolog(typeof(answering), $"answering.ashx DATA {preresult}->{nowresult}");
+                    logging.Infolog(typeof(answering), $" DATA {preresult}->{nowresult}");
                 }
 
 
@@ -77,7 +77,7 @@ namespace 元宵灯谜
 
                 string restr = JsonConvert.SerializeObject(rcg);
                 context.Response.Write(restr);
-                logging.Infolog(typeof(answering), $"answering.ashx RETURN {restr}");
+                logging.Infolog(typeof(answering), $" RETURN {restr}");
                 context.Response.End();
             }
             catch (Exception ex)

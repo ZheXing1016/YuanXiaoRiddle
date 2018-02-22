@@ -21,7 +21,7 @@ namespace yuanxiao
                 Initilazition.Init();
                 string Username = context.Request.Form["USER"];
                 string Password = context.Request.Form["PASSWORD"];
-                logging.Infolog(typeof(Login1), $"login.ashx GET Username={Username},Password={Password}");
+                logging.Infolog(typeof(Login1), $" GET Username={Username},Password={Password}");
                 LoginMoudle login = new LoginMoudle();
                 if (isLoginOK(Username, Password))
                 {
@@ -47,7 +47,7 @@ namespace yuanxiao
                 string reval = JsonConvert.SerializeObject(login);//转成对应的json
               //LoginMoudle.status=1  =>  {"status":"1"};
                 context.Response.Write(reval);
-                logging.Infolog(typeof(Login1), $"login.ashx RETURN {reval}");
+                logging.Infolog(typeof(Login1), $" RETURN {reval}");
                 context.Response.End();
             }
             catch (Exception ex)

@@ -23,7 +23,7 @@ namespace yuanxiao
                 Initilazition.Init();
                 riddleUncompeletedMoudle rum = new riddleUncompeletedMoudle();
                 string username = context.Request.Form["UNCOMPELETED"];
-                logging.Infolog(typeof(uncompeletedCheck), $"uncompeletedCheck.ashx GET UNCOMPELETED={username}");
+                logging.Infolog(typeof(uncompeletedCheck), $"GET UNCOMPELETED={username}");
                 string uncompeleted = isNoPauseAnswer(username);
                 if (uncompeleted == "")
                 {
@@ -40,7 +40,7 @@ namespace yuanxiao
                 }
                 string reval = JsonConvert.SerializeObject(rum);
                 context.Response.Write(reval);
-                logging.Infolog(typeof(uncompeletedCheck), $"uncompeletedCheck.ashx RETURN {reval}");
+                logging.Infolog(typeof(uncompeletedCheck), $"RETURN {reval}");
                 context.Response.End();
             }
             catch (Exception ex)

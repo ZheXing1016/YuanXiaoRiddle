@@ -20,7 +20,7 @@ namespace 元宵灯谜
             {               
                 string GID = context.Request.Form["GID"];
                 string COSTTIME = context.Request.Form["COSTTIME"];
-                logging.Infolog(typeof(pushcosttime), $"pushcosttime.ashx GET GID={GID},Password={COSTTIME}");
+                logging.Infolog(typeof(pushcosttime), $" GET GID={GID},Password={COSTTIME}");
                 dbwork.UpdateSet("Rcosttime`Lasttime", $"{COSTTIME}`{DateTime.Now.ToString()}", "RiddleGroup", $" GID={GID}");
                 yuanxiao.LoginMoudle status = new yuanxiao.LoginMoudle();
                 status.status = "OK";
