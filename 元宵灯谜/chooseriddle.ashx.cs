@@ -27,7 +27,7 @@ namespace 元宵灯谜
                 }
                 else
                 {
-                    int updateRowsCount = CommonClass.dbwork.UpdateSet("PID`Pname`Lasttime", $"{PID}`{USER}`{DateTime.Now.ToString()}", "RiddleGroup", $"GID={GID}");
+                    int updateRowsCount = CommonClass.dbwork.UpdateSet("Pname`Lasttime", $"{USER}`{DateTime.Now.ToString()}", "RiddleGroup", $"GID={GID}");
                     if (updateRowsCount > 0)
                     {
                         status.status = "ok";
@@ -41,7 +41,10 @@ namespace 元宵灯谜
             }
             else
             {
-                status.status = GotName;
+                string prenames = CommonClass.dbwork.SelectSingle("Pname", "RiddleGroup", $" GID={GID}");
+                string updatenames = $"{prenames},{USER}";
+                int updateRowsCount = CommonClass.dbwork.UpdateSet("Pname`Lasttime", $"{updatenames}`{DateTime.Now.ToString()}", "RiddleGroup", $"GID={GID}");
+                status.status = "OK";
             }
             string reval = Newtonsoft.Json.JsonConvert.SerializeObject(status);
             context.Response.Write(reval);

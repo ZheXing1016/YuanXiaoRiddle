@@ -10,10 +10,11 @@ namespace 元宵灯谜
     /// <summary>
     /// 2018-2-13 具体选题的算法还没有完成
     /// 2018-2-14 目前还未完成循环节点位置的排序，如正常应该是8,9,1,2,3，目前出来的是1,2,3,8,9
+    /// 2018-2-22 完成了选题循环的问题
     /// </summary>
     public class getriddle : IHttpHandler
     {
-       
+
         public void ProcessRequest(HttpContext context)
         {
             yuanxiao.Initilazition.takeMaxRowsCount();
@@ -33,7 +34,7 @@ namespace 元宵灯谜
                 rg.totalpage = (yuanxiao.Initilazition.MaxRowsCount / Convert.ToInt16(LIMIT)).ToString();//获取totalpage最大页数
             else
                 rg.totalpage = (yuanxiao.Initilazition.MaxRowsCount / Convert.ToInt16(LIMIT) + 1).ToString();//获取totalpage最大页数，不能整除最后要+1
-            for (int i = 0; i < RiddleListTmp.Length-1; i++)
+            for (int i = 0; i < RiddleListTmp.Length - 1; i++)
             {
 
                 if (i % 2 == 0)
@@ -65,6 +66,7 @@ namespace 元宵灯谜
         /// <returns></returns>
         public string pushRiddle(string page, string limit, string lastGID)
         {
+            bool isToStart = false;//判断是否循环到头了，比如789123，确保是这种顺序出现
             int startval = 0;
             string pushlastGID = "";
             if (lastGID == "0")
@@ -78,13 +80,14 @@ namespace 元宵灯谜
             }
             string reval = "";
             DataTable PnameList = new DataTable();
-            string selectSTR = "";            
+            string selectSTR = "";
             for (int i = 0; i < Convert.ToInt16(limit); i++)
             {
                 int reGID = (i + startval) % yuanxiao.Initilazition.MaxRowsCount;
-                if (reGID == 0)
+                if (reGID == 0)//当startval为最大值的时候，会出现余数为0的情况
                 {
                     reGID = yuanxiao.Initilazition.MaxRowsCount;
+                    isToStart = true;//当出现最大值的时候，就说明跨过了一个循环
                 }
                 if (page != "1")
                 {
@@ -93,7 +96,7 @@ namespace 元宵灯谜
                     if (reGID == StartPageStartVal)
                     {
                         pushlastGID = (reGID - 1).ToString();//考虑最后不一定能够达到limit的数量，所以破的时候也需要记录lastGID
-                        if(pushlastGID=="0")//还是存在%计算时候，出现的边界情况
+                        if (pushlastGID == "0")//还是存在%计算时候，出现的边界情况
                         {
                             pushlastGID = yuanxiao.Initilazition.MaxRowsCount.ToString();
                         }
@@ -108,16 +111,73 @@ namespace 元宵灯谜
                 }
 
             }
-           
+
             selectSTR = $"select Pname,GID from RiddleGroup where {selectSTR.Substring(0, selectSTR.Length - 3)}";
-            PnameList = CommonClass.dbwork.SelectMutily(selectSTR);
+            if (isToStart)
+            {
+                PnameList = sortTableVal(CommonClass.dbwork.SelectMutily(selectSTR));
+            }
+            else
+            {
+                PnameList = CommonClass.dbwork.SelectMutily(selectSTR);
+            }
             for (int i = 0; i < PnameList.Rows.Count; i++)
-            {               
-                
+            {
+
                 reval += PnameList.Rows[i][1] + "~" + PnameList.Rows[i][0] + "~";
             }
 
-            return reval.Substring(0, reval.Length - 1)+"~"+pushlastGID;
+            return reval.Substring(0, reval.Length - 1) + "~" + pushlastGID;
+        }
+
+
+        /// <summary>
+        /// 首先对全表遍历，如果发现下一行的GID-当前行的GID>1，则定下一行为divnum，并且跳出遍历循环
+        /// 在获取divnum的前提下，将old里面的内容根据顺序，插入到dttmp中
+        /// </summary>
+        /// <param name="oldDataTable"></param>
+        /// <returns></returns>
+        DataTable sortTableVal(DataTable oldDataTable)
+        {
+            DataTable dttmp = new DataTable();
+            dttmp.Columns.Add("Pname");
+            dttmp.Columns.Add("GID");
+            oldDataTable.Columns[1].DataType = typeof(int);
+            dttmp.Columns[1].DataType = typeof(int);
+            int divnum = 0;//分界线
+            for (int rowindex = 0; rowindex < oldDataTable.Rows.Count; rowindex++)
+            {
+                if (rowindex < oldDataTable.Rows.Count - 1)
+                {
+                    if ((Convert.ToInt32(oldDataTable.Rows[rowindex + 1][1]) - Convert.ToInt32(oldDataTable.Rows[rowindex][1])) > 1)
+                    {
+                        divnum = rowindex + 1;//获取分界线//必须加1，break以等于divnum为准
+                        break;
+                    }                 
+                }
+            }
+            int oldTatblerowindex = divnum;
+            int dttmprowindex = 0;
+            while (true)
+            {            
+                dttmp.Rows.Add();
+                dttmp.Rows[dttmprowindex][0] = oldDataTable.Rows[oldTatblerowindex][0];
+                dttmp.Rows[dttmprowindex][1] = oldDataTable.Rows[oldTatblerowindex][1];
+                dttmprowindex++;
+                oldTatblerowindex++;
+                if(oldTatblerowindex>=oldDataTable.Rows.Count)
+                {
+                    oldTatblerowindex = 0;
+                }
+                if(oldTatblerowindex==divnum)
+                {
+                    break;
+                }
+            }
+           
+            return dttmp;
+
+            // return oldDataTable;
         }
 
         public bool IsReusable
