@@ -4,51 +4,37 @@ using log4net.Config;
 using log4net;
 using System.IO;
 
-
-class logging
+[assembly:log4net.Config.XmlConfigurator(Watch = true)]
+class Logging
 {
-    static ILog log;
-    public logging()
-    {
-        
+    ILog log;
+    public Logging()
+    {       
+       // log=LogManager.GetLogger(typeof())
     }
 
 
-    public static void Infolog(string LogStr)
+    public void Infolog(Type logtype , string LogStr)
     {
-        ILoggerRepository LogRepository = LogManager.CreateRepository("NETCoreRepository");
-        XmlConfigurator.Configure(LogRepository, new FileInfo("log4net.config"));
-        log = LogManager.GetLogger(LogRepository.Name, "NETCorelog4net");
+        log = LogManager.GetLogger(logtype);
         log.Info(LogStr);
     }
 
-    public static void InfoFormatlog(string LogStr)
+    public void InfoFormatlog(Type logtype, string LogStr)
     {
-        ILoggerRepository LogRepository = LogManager.CreateRepository("NETCoreRepository");
-        XmlConfigurator.Configure(LogRepository, new FileInfo("log4net.config"));
-        log = LogManager.GetLogger(LogRepository.Name, "NETCorelog4net");
+        log = LogManager.GetLogger(logtype);
         log.InfoFormat(LogStr);
     }
 
-    public static void Errorlog(string LogStr)
+    public void Errorlog(Type logtype, string LogStr)
     {
-        ILoggerRepository LogRepository = LogManager.CreateRepository("NETCoreRepository");
-        XmlConfigurator.Configure(LogRepository, new FileInfo("log4net.config"));
-        log = LogManager.GetLogger(LogRepository.Name, "NETCorelog4net");
+        log = LogManager.GetLogger(logtype);
         log.Error(LogStr);
     }
 
-    public static void ErrorFormatlog(string LogStr)
+    public void ErrorFormatlog(Type logtype, string LogStr)
     {
-        ILoggerRepository LogRepository = LogManager.CreateRepository("NETCoreRepository");
-        XmlConfigurator.Configure(LogRepository, new FileInfo("log4net.config"));
-        log = LogManager.GetLogger(LogRepository.Name, "NETCorelog4net");
+        log = LogManager.GetLogger(logtype);
         log.ErrorFormat(LogStr);
     }
 }
-
-class Logging
-{
-    public static logging Log;
-}
-

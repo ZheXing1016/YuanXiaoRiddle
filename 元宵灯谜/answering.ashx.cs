@@ -16,6 +16,7 @@ namespace 元宵灯谜
 
         public void ProcessRequest(HttpContext context)
         {
+            Logging logging=new Logging();
             try
             {
                 yuanxiao.Initilazition.Init();
@@ -23,12 +24,12 @@ namespace 元宵灯谜
                 string PNUM = context.Request.Form["PNUM"];
                 string ANSWER = context.Request.Form["ANSWER"];
                 string COSTTIME = context.Request.Form["COSTTIME"];
-                logging.Infolog($"answering.ashx GET GID={GID},PNUM={PNUM},ANSWER={ANSWER},COSTTIME={COSTTIME}");
+                logging.Infolog(typeof(answering) , $"answering.ashx GET GID={GID},PNUM={PNUM},ANSWER={ANSWER},COSTTIME={COSTTIME}");
                 int updateconut = 0;
                 if (PNUM == "0")
                 {
                     updateconut = dbwork.UpdateSet("Rrecord`Lasttime", $"~~~~`{DateTime.Now.ToString()}", "RiddleGroup", $" GID={GID}");
-                    logging.Infolog($"answering.ashx DATA getNew");
+                    logging.Infolog(typeof(answering), $"answering.ashx DATA getNew");
                 }
                 else
                 {
@@ -38,7 +39,7 @@ namespace 元宵灯谜
                     string nowresult = preresult.Insert((nowIndex - 1) * 2, ANSWER);//对应位置公式为（nowindex-1) * 2
                     updateconut = dbwork.UpdateSet("Rrecord`Rcosttime`Lasttime",
                         $"{nowresult}`{COSTTIME}`{DateTime.Now.ToString()}", "RiddleGroup", $" GID={GID}");
-                    logging.Infolog($"answering.ashx DATA {preresult}->{nowresult}");
+                    logging.Infolog(typeof(answering), $"answering.ashx DATA {preresult}->{nowresult}");
                 }
 
 
@@ -67,12 +68,17 @@ namespace 元宵灯谜
 
                 string restr = JsonConvert.SerializeObject(rcg);
                 context.Response.Write(restr);
-                logging.Infolog($"answering.ashx RETURN {restr}");
+                logging.Infolog(typeof(answering), $"answering.ashx RETURN {restr}");
                 context.Response.End();
             }
             catch(Exception ex)
             {
-                logging.Errorlog(ex.ToString());
+                if (ex.Message != "正在中止线程。"||ex.Message== "Thread was being aborted.")
+                {
+                    logging.Errorlog(typeof(answering), ex.Message);
+                    context.Response.Write("app error");
+                    context.Response.End();
+                }
             }
 
            

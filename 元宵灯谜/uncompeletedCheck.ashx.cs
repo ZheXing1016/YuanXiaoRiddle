@@ -17,12 +17,13 @@ namespace yuanxiao
 
         public void ProcessRequest(HttpContext context)
         {
+            Logging logging = new Logging();
             try
             {
                 Initilazition.Init();
                 riddleUncompeletedMoudle rum = new riddleUncompeletedMoudle();
                 string username = context.Request.Form["UNCOMPELETED"];
-                logging.Infolog($"uncompeletedCheck.ashx GET UNCOMPELETED={username}");
+                logging.Infolog(typeof(uncompeletedCheck), $"uncompeletedCheck.ashx GET UNCOMPELETED={username}");
                 string uncompeleted = isNoPauseAnswer(username);
                 if (uncompeleted == "")
                 {
@@ -39,12 +40,17 @@ namespace yuanxiao
                 }
                 string reval = JsonConvert.SerializeObject(rum);
                 context.Response.Write(reval);
-                logging.Infolog($"uncompeletedCheck.ashx RETURN {reval}");
+                logging.Infolog(typeof(uncompeletedCheck), $"uncompeletedCheck.ashx RETURN {reval}");
                 context.Response.End();
             }
             catch (Exception ex)
             {
-                logging.Errorlog(ex.ToString());
+                if (ex.Message != "正在中止线程。" && ex.Message != "Thread was being aborted.")
+                {
+                    logging.Errorlog(typeof(uncompeletedCheck), ex.Message);
+                    context.Response.Write("app error");
+                    context.Response.End();
+                }
             }
         }
 
@@ -58,7 +64,7 @@ namespace yuanxiao
             string PID = dbwork.SelectSingle("PID", "Persons", $" Plogin='{username}'");
             if (PID != "")
             {
-                DataTable RrecordStringList = dbwork.SelectMutily($"select Rrecord,GID,Rcosttime from RiddleGroup where PID={PID} order by Lasttime DESC");
+                DataTable RrecordStringList = dbwork.SelectMutily($"select Rrecord,GID,Rcosttime from RiddleGroup where Pname='{username}' order by Lasttime DESC");
                 if (RrecordStringList.Rows.Count==0)
                 {
                     return "";
@@ -83,7 +89,7 @@ namespace yuanxiao
             else
             {
 
-                return "error";
+                return  "error";
             }
         }
 

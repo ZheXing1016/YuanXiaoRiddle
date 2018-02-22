@@ -16,29 +16,34 @@ namespace 元宵灯谜
 
         public void ProcessRequest(HttpContext context)
         {
+            Logging logging = new Logging();
             try
             {
                 yuanxiao.Initilazition.Init();
                 string CHECKRIDDLE = context.Request.Form["CHECKRIDDLE"];//获取题组号
-                logging.Infolog($"isriddlegot.ashx GET CHECKRIDDLE={CHECKRIDDLE}");
+                logging.Infolog(typeof(isriddlegot), $"isriddlegot.ashx GET CHECKRIDDLE={CHECKRIDDLE}");
                 yuanxiao.LoginMoudle status = new yuanxiao.LoginMoudle();
-                string gotPID = dbwork.SelectSingle("PID", "RiddleGroup", $" GID={CHECKRIDDLE}");//查询对应题组号用户ID的值，如果为0，那说明没有，如果有，就要查询到对应用户ID的名字并返回
-                if (gotPID != "0")
-                {
-                    string username = dbwork.SelectSingle("Pname", "Persons", $" PID={gotPID}");
-                    status.status = username;//如果已经被选掉了，就返回被谁选掉了
+                string gotPname = dbwork.SelectSingle("Pname", "RiddleGroup", $" GID={CHECKRIDDLE}");//查询对应题组号用户ID的值，如果为0，那说明没有，如果有，就要查询到对应用户ID的名字并返回
+                if (gotPname != "")
+                {                    
+                    status.status = gotPname;//如果已经被选掉了，就返回被谁选掉了
                 }
                 else
                 {
                     status.status = "0";//没有人选调，就返回0
                 }
                 context.Response.Write(JsonConvert.SerializeObject(status));
-                logging.Infolog($"isriddlegot.ashx.ashx RETURN {JsonConvert.SerializeObject(status)}");
+                logging.Infolog(typeof(isriddlegot), $"isriddlegot.ashx.ashx RETURN {JsonConvert.SerializeObject(status)}");
                 context.Response.End();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                logging.Errorlog(ex.ToString());
+                if (ex.Message != "正在中止线程。" && ex.Message != "Thread was being aborted.")
+                {
+                    logging.Errorlog(typeof(isriddlegot), ex.Message);
+                    context.Response.Write("app error");
+                    context.Response.End();
+                }
             }
         }
 

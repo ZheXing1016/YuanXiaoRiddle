@@ -15,12 +15,13 @@ namespace 元宵灯谜
 
         public void ProcessRequest(HttpContext context)
         {
+            Logging logging = new Logging();
             try
             {
                 yuanxiao.Initilazition.Init();
                 string GID = context.Request.Form["GID"];
                 string COSTTIME = context.Request.Form["COSTTIME"];
-                logging.Infolog($"pushcosttime.ashx GET GID={GID},Password={COSTTIME}");
+                logging.Infolog(typeof(pushcosttime), $"pushcosttime.ashx GET GID={GID},Password={COSTTIME}");
                 dbwork.UpdateSet("Rcosttime`Lasttime", $"{COSTTIME}`{DateTime.Now.ToString()}", "RiddleGroup", $" GID={GID}");
                 yuanxiao.LoginMoudle status = new yuanxiao.LoginMoudle();
                 status.status = "OK";
@@ -29,7 +30,12 @@ namespace 元宵灯谜
             }
             catch (Exception ex)
             {
-                logging.Errorlog(ex.ToString());
+                if (ex.Message != "正在中止线程。" && ex.Message != "Thread was being aborted.")
+                {
+                    logging.Errorlog(typeof(pushcosttime), ex.Message);
+                    context.Response.Write("app error");
+                    context.Response.End();
+                }
             }
 
         }

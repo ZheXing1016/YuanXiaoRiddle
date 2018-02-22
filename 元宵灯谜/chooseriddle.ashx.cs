@@ -13,12 +13,13 @@ namespace 元宵灯谜
 
         public void ProcessRequest(HttpContext context)
         {
+            Logging logging = new Logging();
             try
             {
                 yuanxiao.Initilazition.Init();
                 string GID = context.Request.Form["GID"];
                 string USER = context.Request.Form["USER"];
-                logging.Infolog($"chooseriddle.ashx GET GID={GID},USER={USER}");
+                logging.Infolog(typeof(chooseriddle), $"chooseriddle.ashx GET GID={GID},USER={USER}");
                 yuanxiao.LoginMoudle status = new yuanxiao.LoginMoudle();
                 string GotName = CommonClass.dbwork.SelectSingle("Pname", "RiddleGroup", $" GID={GID}");
                 if (GotName == "")
@@ -48,12 +49,17 @@ namespace 元宵灯谜
                 }
                 string reval = Newtonsoft.Json.JsonConvert.SerializeObject(status);
                 context.Response.Write(reval);
-                logging.Infolog($"chooseriddle.ashx RETURN {reval}");
+                logging.Infolog(typeof(chooseriddle), $"chooseriddle.ashx RETURN {reval}");
                 context.Response.End();
             }
             catch(Exception ex)
             {
-                logging.Errorlog(ex.ToString());
+                if (ex.Message != "正在中止线程。" && ex.Message != "Thread was being aborted.")
+                {
+                    logging.Errorlog(typeof(chooseriddle), ex.Message);
+                    context.Response.Write("app error");
+                    context.Response.End();
+                }
             }
         }
 

@@ -12,15 +12,16 @@ namespace yuanxiao
     /// </summary>
     public class Login1 : IHttpHandler
     {
-       
+
         public void ProcessRequest(HttpContext context)
         {
-            try
-            {
+            Logging logging = new Logging();
+            //try
+            //{
                 Initilazition.Init();
                 string Username = context.Request.Form["USER"];
                 string Password = context.Request.Form["PASSWORD"];
-                logging.Infolog($"login.ashx GET Username={Username},Password={Password}");
+                logging.Infolog(typeof(Login1), $"login.ashx GET Username={Username},Password={Password}");
                 LoginMoudle login = new LoginMoudle();
                 if (isLoginOK(Username, Password))
                 {
@@ -44,37 +45,43 @@ namespace yuanxiao
                 }
 
                 string reval = JsonConvert.SerializeObject(login);//转成对应的json
-                                                                  //LoginMoudle.status=1  =>  {"status":"1"};
+              //LoginMoudle.status=1  =>  {"status":"1"};
                 context.Response.Write(reval);
-                logging.Infolog($"login.ashx RETURN {reval}");
+                logging.Infolog(typeof(Login1), $"login.ashx RETURN {reval}");
                 context.Response.End();
-            }
-            catch(Exception ex)
-            {
-                logging.Errorlog(ex.ToString());
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    if (ex.Message != "正在中止线程。" && ex.Message != "Thread was being aborted.")
+            //    {
+            //        logging.Errorlog(typeof(Login1), ex.Message);
+            //        context.Response.Write("app error");
+            //        context.Response.End();
+            //    }
 
+            //}
         }
 
 
-        /// <summary>
-        /// 判断登入用户名和密码是否正确
-        /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        bool isLoginOK(string username, string password)
-        {
-            string usercount = dbwork.SelectSingle("count(*)", "Persons", $" Plogin='{username}' and Ppassword='{password}'");
-            if (Convert.ToInt16(usercount) >= 1)
-            {               
-                return true;
-            }
-            else
+            /// <summary>
+            /// 判断登入用户名和密码是否正确
+            /// </summary>
+            /// <param name="username"></param>
+            /// <param name="password"></param>
+            /// <returns></returns>
+            bool isLoginOK(string username, string password)
             {
-                return false;
+                string usercount = dbwork.SelectSingle("count(*)", "Persons", $" Plogin='{username}' and Ppassword='{password}'");
+                if (Convert.ToInt16(usercount) >= 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-        }
+        
 
 
 

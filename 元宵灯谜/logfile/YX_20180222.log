@@ -1,0 +1,32 @@
+2018-02-22 16:29:03,150 [5] INFO  yuanxiao.uncompeletedCheck - uncompeletedCheck.ashx GET UNCOMPELETED=test
+2018-02-22 16:29:03,600 [5] INFO  yuanxiao.uncompeletedCheck - uncompeletedCheck.ashx RETURN {"RID":"3","PNUM":"4","COSTTIME":"00:26"}
+2018-02-22 16:46:21,030 [5] INFO  元宵灯谜.isriddlegot - isriddlegot.ashx GET CHECKRIDDLE=6
+2018-02-22 16:46:21,401 [5] ERROR 元宵灯谜.isriddlegot - 语法错误 (操作符丢失) 在查询表达式 'PID=' 中。
+2018-02-22 16:46:58,969 [5] INFO  元宵灯谜.isriddlegot - isriddlegot.ashx GET CHECKRIDDLE=6
+2018-02-22 16:47:27,378 [5] INFO  元宵灯谜.isriddlegot - isriddlegot.ashx GET CHECKRIDDLE=6
+2018-02-22 16:50:32,707 [5] INFO  元宵灯谜.isriddlegot - isriddlegot.ashx GET CHECKRIDDLE=6
+2018-02-22 16:50:33,112 [5] INFO  元宵灯谜.isriddlegot - isriddlegot.ashx.ashx RETURN {"status":"0"}
+2018-02-22 16:50:46,139 [5] INFO  元宵灯谜.isriddlegot - isriddlegot.ashx GET CHECKRIDDLE=4
+2018-02-22 16:50:46,318 [5] INFO  元宵灯谜.isriddlegot - isriddlegot.ashx.ashx RETURN {"status":""}
+2018-02-22 16:50:57,803 [5] INFO  元宵灯谜.isriddlegot - isriddlegot.ashx GET CHECKRIDDLE=3
+2018-02-22 16:50:57,984 [5] INFO  元宵灯谜.isriddlegot - isriddlegot.ashx.ashx RETURN {"status":""}
+2018-02-22 16:51:59,467 [5] INFO  元宵灯谜.isriddlegot - isriddlegot.ashx GET CHECKRIDDLE=3
+2018-02-22 16:51:59,858 [5] INFO  元宵灯谜.isriddlegot - isriddlegot.ashx.ashx RETURN {"status":"1"}
+2018-02-22 16:52:37,995 [5] INFO  元宵灯谜.isriddlegot - isriddlegot.ashx GET CHECKRIDDLE=3
+2018-02-22 16:52:38,362 [5] INFO  元宵灯谜.isriddlegot - isriddlegot.ashx.ashx RETURN {"status":"test"}
+2018-02-22 16:52:43,153 [5] INFO  元宵灯谜.isriddlegot - isriddlegot.ashx GET CHECKRIDDLE=3
+2018-02-22 16:52:43,245 [5] INFO  元宵灯谜.isriddlegot - isriddlegot.ashx.ashx RETURN {"status":"test"}
+2018-02-22 16:52:50,163 [7] INFO  元宵灯谜.isriddlegot - isriddlegot.ashx GET CHECKRIDDLE=4
+2018-02-22 16:52:50,250 [7] INFO  元宵灯谜.isriddlegot - isriddlegot.ashx.ashx RETURN {"status":"0"}
+2018-02-22 16:56:59,095 [5] INFO  yuanxiao.Login1 - login.ashx GET Username=test2,Password=test2
+2018-02-22 16:56:59,520 [5] ERROR yuanxiao.Login1 - 至少一个参数没有被指定值。
+2018-02-22 16:57:36,606 [5] INFO  yuanxiao.Login1 - login.ashx GET Username=test2,Password=test2
+2018-02-22 16:57:37,049 [5] ERROR yuanxiao.Login1 - 至少一个参数没有被指定值。
+2018-02-22 16:59:00,961 [5] INFO  yuanxiao.Login1 - login.ashx GET Username=test2,Password=test2
+2018-02-22 17:01:53,252 [5] INFO  yuanxiao.Login1 - login.ashx GET Username=test2,Password=test2
+2018-02-22 17:02:51,779 [5] INFO  yuanxiao.Login1 - login.ashx GET Username=test2,Password=test2
+2018-02-22 17:02:52,317 [5] INFO  yuanxiao.Login1 - login.ashx RETURN {"status":"0"}
+2018-02-22 17:03:00,772 [12] INFO  yuanxiao.Login1 - login.ashx GET Username=test1,Password=test1
+2018-02-22 17:03:00,857 [12] INFO  yuanxiao.Login1 - login.ashx RETURN {"status":"-1"}
+2018-02-22 17:03:10,435 [5] INFO  yuanxiao.Login1 - login.ashx GET Username=test,Password=test
+2018-02-22 17:03:10,695 [5] INFO  yuanxiao.Login1 - login.ashx RETURN {"status":"1"}
