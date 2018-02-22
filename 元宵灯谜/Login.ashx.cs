@@ -16,8 +16,8 @@ namespace yuanxiao
         public void ProcessRequest(HttpContext context)
         {
             Logging logging = new Logging();
-            //try
-            //{
+            try
+            {
                 Initilazition.Init();
                 string Username = context.Request.Form["USER"];
                 string Password = context.Request.Form["PASSWORD"];
@@ -49,17 +49,17 @@ namespace yuanxiao
                 context.Response.Write(reval);
                 logging.Infolog(typeof(Login1), $"login.ashx RETURN {reval}");
                 context.Response.End();
-            //}
-            //catch (Exception ex)
-            //{
-            //    if (ex.Message != "正在中止线程。" && ex.Message != "Thread was being aborted.")
-            //    {
-            //        logging.Errorlog(typeof(Login1), ex.Message);
-            //        context.Response.Write("app error");
-            //        context.Response.End();
-            //    }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message != "正在中止线程。" && ex.Message != "Thread was being aborted.")
+                {
+                    logging.Errorlog(typeof(Login1), ex.Message);
+                    context.Response.Write("app error");
+                    context.Response.End();
+                }
 
-            //}
+            }
         }
 
 

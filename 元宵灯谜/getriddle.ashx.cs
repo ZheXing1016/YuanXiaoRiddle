@@ -17,8 +17,8 @@ namespace 元宵灯谜
         public void ProcessRequest(HttpContext context)
         {
             Logging logging = new Logging();
-            //try
-            //{
+            try
+            {
                 yuanxiao.Initilazition.takeMaxRowsCount();
                 /*yuanxiao.Initilazition.MaxRowsCount = 4*/
 
@@ -55,16 +55,16 @@ namespace 元宵灯谜
                 context.Response.Write(val);
                 logging.Infolog(typeof(getriddle), $"getriddle.ashx RETURN {val}");
                 context.Response.End();
-            //}
-            //catch(Exception ex)
-            //{
-            //    if (ex.Message != "正在中止线程。" && ex.Message != "Thread was being aborted.")
-            //    {
-            //        logging.Errorlog(typeof(getriddle), ex.Message);
-            //        context.Response.Write("app error");
-            //        context.Response.End();
-            //    }
-            //}
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message != "正在中止线程。" && ex.Message != "Thread was being aborted.")
+                {
+                    logging.Errorlog(typeof(getriddle), ex.Message);
+                    context.Response.Write("app error");
+                    context.Response.End();
+                }
+            }
         }
 
 
