@@ -11,7 +11,6 @@ namespace yuanxiao
     /// 2018-2-12已用时间尚未推送出去
     /// 2018-2-13基本完成，test
     /// 2018-2-13 服务器上还有问题
-    /// 2018-2-22 多人重复选的问题要处理
     /// </summary>
     public class uncompeletedCheck : IHttpHandler
     {

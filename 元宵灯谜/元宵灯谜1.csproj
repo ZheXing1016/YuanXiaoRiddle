@@ -88,6 +88,7 @@
   <ItemGroup>
     <Content Include="mainAnwser.aspx" />
     <Content Include="maindb.accdb" />
+    <Content Include="result.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +124,13 @@
     </Compile>
     <Compile Include="result.ashx.cs">
       <DependentUpon>result.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="result.aspx.cs">
+      <DependentUpon>result.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="result.aspx.designer.cs">
+      <DependentUpon>result.aspx</DependentUpon>
     </Compile>
     <Compile Include="uncompeletedCheck.ashx.cs">
       <DependentUpon>uncompeletedCheck.ashx</DependentUpon>
