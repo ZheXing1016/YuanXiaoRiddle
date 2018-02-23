@@ -24,65 +24,53 @@ namespace 元宵灯谜
                 string PNUM = context.Request.Form["PNUM"];
                 string ANSWER = context.Request.Form["ANSWER"];
                 string COSTTIME = context.Request.Form["COSTTIME"];
-                logging.Infolog(typeof(answering), $"answering.ashx GET GID={GID},PNUM={PNUM},ANSWER={ANSWER},COSTTIME={COSTTIME}");
+                logging.Infolog(typeof(answering), $" GET GID={GID},PNUM={PNUM},ANSWER={ANSWER},COSTTIME={COSTTIME}");
                 int updateconut = 0;
                 if (PNUM == "0")
                 {
                     updateconut = dbwork.UpdateSet("Rrecord`Lasttime", $"~~~~ `{DateTime.Now.ToString()}", "RiddleGroup", $" GID={GID}");
-                    logging.Infolog(typeof(answering), $"answering.ashx DATA getNew");
+                    logging.Infolog(typeof(answering), $" DATA getNew");
                 }
                 else
                 {
                     string preresult = dbwork.SelectSingle("Rrecord",
                         "RiddleGroup", $" GID={GID}");//先获取原先的答案字符串
-                    int nowIndex = Convert.ToInt16(PNUM);
+                    int nowIndex = Convert.ToInt32(PNUM);
                     string nowresult = "";
-                    if (preresult[(nowIndex - 1) * 2] == '~')
+                    if (ANSWER == "U")
                     {
-                        nowresult = preresult.Insert((nowIndex - 1) * 2, ANSWER);//对应位置公式为（nowindex-1) * 2
+                        nowresult = makeAnswerStr(preresult, nowIndex, ANSWER);
+                        updateconut = dbwork.UpdateSet("Rrecord`Rcosttime`Lasttime",
+                            $"{nowresult}`{COSTTIME}`{DateTime.Now.ToString()}", "RiddleGroup", $" GID={GID}");
+                        logging.Infolog(typeof(answering), $" DATA {preresult}->{nowresult}");
                     }
-                    else
-                    {
-                        nowresult = preresult.Remove((nowIndex - 1) * 2, 1);
-                        nowresult = nowresult.Insert((nowIndex - 1) * 2, ANSWER);
-                    }
-                    updateconut = dbwork.UpdateSet("Rrecord`Rcosttime`Lasttime",
-                        $"{nowresult}`{COSTTIME}`{DateTime.Now.ToString()}", "RiddleGroup", $" GID={GID}");
-                    logging.Infolog(typeof(answering), $"answering.ashx DATA {preresult}->{nowresult}");
                 }
 
 
                 yuanxiao.riddleContentGet rcg = new yuanxiao.riddleContentGet();
-                rcg.ranswers = new yuanxiao.selection();
                 if (PNUM != "5")
                 {
                     string[] Riddles = dbwork.SelectSingle("Griddles", "RiddleGroup", $"GID={GID}").Split('~');
                     string nextpnum = Riddles[Convert.ToInt32(PNUM)];
-                    DataTable riddleContent = dbwork.SelectMutily($"select Rquestion,Ranswers from Riddle where Rpnum={nextpnum}");
+                    DataTable riddleContent = dbwork.SelectMutily($"select Rquestion,Rtip from Riddle where Rpnum={nextpnum}");
                     rcg.rquestion = riddleContent.Rows[0][0].ToString();
-                    string[] seletions = riddleContent.Rows[0][1].ToString().Split('~');
-                    rcg.ranswers.a = seletions[0];
-                    rcg.ranswers.b = seletions[1];
-                    rcg.ranswers.c = seletions[2];
-                    rcg.ranswers.d = seletions[3];
+                    rcg.rtips = riddleContent.Rows[0][1].ToString();
+
                 }
                 else
                 {
                     rcg.rquestion = "";
-                    rcg.ranswers.a = "";
-                    rcg.ranswers.b = "";
-                    rcg.ranswers.c = "";
-                    rcg.ranswers.d = "";
+                    rcg.rtips = "";
                 }
 
                 string restr = JsonConvert.SerializeObject(rcg);
                 context.Response.Write(restr);
-                logging.Infolog(typeof(answering), $"answering.ashx RETURN {restr}");
+                logging.Infolog(typeof(answering), $" RETURN {restr}");
                 context.Response.End();
             }
             catch (Exception ex)
             {
-                if (ex.Message != "正在中止线程。" && ex.Message == "Thread was being aborted.")
+                if (ex.Message != "正在中止线程。" && ex.Message != "Thread was being aborted.")
                 {
                     logging.Errorlog(typeof(answering), ex.Message);
                     context.Response.Write("app error");
@@ -93,7 +81,17 @@ namespace 元宵灯谜
 
         }
 
-
+        string makeAnswerStr(string oldAnswerStr, int Pnum, string NewAnswer)
+        {
+            string[] strtmp = oldAnswerStr.Split('~');
+            strtmp[Pnum - 1] = NewAnswer;
+            string reval = "";
+            for (int i = 0; i < Pnum; i++)
+            {
+                reval += $"{strtmp[i]}~";
+            }
+            return reval.Substring(0, reval.Length - 1);
+        }
 
 
 

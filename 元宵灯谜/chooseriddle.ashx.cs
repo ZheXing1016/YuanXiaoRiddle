@@ -19,7 +19,7 @@ namespace 元宵灯谜
                 yuanxiao.Initilazition.Init();
                 string GID = context.Request.Form["GID"];
                 string USER = context.Request.Form["USER"];
-                logging.Infolog(typeof(chooseriddle), $"chooseriddle.ashx GET GID={GID},USER={USER}");
+                logging.Infolog(typeof(chooseriddle), $" GET GID={GID},USER={USER}");
                 yuanxiao.LoginMoudle status = new yuanxiao.LoginMoudle();
                 string GotName = CommonClass.dbwork.SelectSingle("Pname", "RiddleGroup", $" GID={GID}");
                 if (GotName == "")
@@ -49,7 +49,7 @@ namespace 元宵灯谜
                 }
                 string reval = Newtonsoft.Json.JsonConvert.SerializeObject(status);
                 context.Response.Write(reval);
-                logging.Infolog(typeof(chooseriddle), $"chooseriddle.ashx RETURN {reval}");
+                logging.Infolog(typeof(chooseriddle), $" RETURN {reval}");
                 context.Response.End();
             }
             catch(Exception ex)

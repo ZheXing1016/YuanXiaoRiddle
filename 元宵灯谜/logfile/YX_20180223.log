@@ -1,0 +1,25 @@
+2018-02-23 10:09:25,672 [5] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test
+2018-02-23 10:09:26,448 [5] INFO  yuanxiao.uncompeletedCheck - RETURN {"RID":"3","PNUM":"4","COSTTIME":"00:58"}
+2018-02-23 10:09:34,381 [5] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test
+2018-02-23 10:10:04,543 [5] INFO  yuanxiao.uncompeletedCheck - RETURN {"RID":"3","PNUM":"4","COSTTIME":"00:58"}
+2018-02-23 10:10:10,945 [5] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test
+2018-02-23 10:11:51,572 [5] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test
+2018-02-23 10:11:52,091 [5] INFO  yuanxiao.uncompeletedCheck - RETURN {"RID":"3","PNUM":"3","COSTTIME":"00:58"}
+2018-02-23 11:54:33,222 [5] INFO  元宵灯谜.chooseriddle -  GET GID=1,USER=
+2018-02-23 11:54:33,902 [5] INFO  元宵灯谜.chooseriddle -  RETURN {"status":"test"}
+2018-02-23 11:55:29,658 [5] INFO  元宵灯谜.result -  GET GID =1
+2018-02-23 11:55:30,613 [5] INFO  元宵灯谜.result - RETURN {"result":"您在00:36:00完成了该组灯谜的解答，共答对了4题目。请再接再厉，要解出一组所有的灯谜才可以拿到公会准备的奖品哦ヾ(?°?°?)??"}
+2018-02-23 11:55:54,403 [5] INFO  元宵灯谜.result -  GET GID =1
+2018-02-23 11:55:55,021 [5] INFO  元宵灯谜.result - RETURN {"result":"哇塞，好厉害，恭喜您在00:36:00的时间里面解出了该组所有灯谜！坐等公会发奖品吧(＾－＾)V"}
+2018-02-23 11:56:01,922 [5] INFO  元宵灯谜.result -  GET GID =1
+2018-02-23 11:56:02,567 [5] INFO  元宵灯谜.result - RETURN {"result":"哇塞，好厉害，恭喜您在00:36:00的时间里面解出了该组所有灯谜！坐等公会发奖品吧(＾－＾)V"}
+2018-02-23 11:56:12,996 [5] INFO  元宵灯谜.result -  GET GID =1
+2018-02-23 11:56:13,601 [5] INFO  元宵灯谜.result - RETURN {"result":"您在00:36:00完成了该组灯谜的解答，共答对了4题目。请再接再厉，要解出一组所有的灯谜才可以拿到公会准备的奖品哦ヾ(?°?°?)??"}
+2018-02-23 11:56:18,994 [5] INFO  元宵灯谜.result -  GET GID =1
+2018-02-23 11:56:19,588 [5] INFO  元宵灯谜.result - RETURN {"result":"哇塞，好厉害，恭喜您在00:36:00的时间里面解出了该组所有灯谜！坐等公会发奖品吧(＾－＾)V"}
+2018-02-23 11:56:24,731 [8] INFO  元宵灯谜.result -  GET GID =1
+2018-02-23 11:56:25,329 [8] INFO  元宵灯谜.result - RETURN {"result":"您在00:36:00完成了该组灯谜的解答，共答对了4题目。请再接再厉，要解出一组所有的灯谜才可以拿到公会准备的奖品哦ヾ(?°?°?)??"}
+2018-02-23 11:56:35,627 [7] INFO  元宵灯谜.result -  GET GID =2
+2018-02-23 11:56:36,217 [7] INFO  元宵灯谜.result - RETURN {"result":"您在00:26:00完成了该组灯谜的解答，共答对了3题目。请再接再厉，要解出一组所有的灯谜才可以拿到公会准备的奖品哦ヾ(?°?°?)??"}
+2018-02-23 11:56:55,826 [5] INFO  元宵灯谜.result -  GET GID =3
+2018-02-23 11:56:56,419 [5] INFO  元宵灯谜.result - RETURN {"result":"天啦噜，您花了00:58:00居然一道题目都没有解开，系统为您默哀1秒钟。好了，再接再厉吧，或者找老应伯要点安慰奖什么的，本系统为您作证！?(^_-)"}

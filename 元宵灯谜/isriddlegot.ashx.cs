@@ -21,7 +21,7 @@ namespace 元宵灯谜
             {
                 yuanxiao.Initilazition.Init();
                 string CHECKRIDDLE = context.Request.Form["CHECKRIDDLE"];//获取题组号
-                logging.Infolog(typeof(isriddlegot), $"isriddlegot.ashx GET CHECKRIDDLE={CHECKRIDDLE}");
+                logging.Infolog(typeof(isriddlegot), $" GET CHECKRIDDLE={CHECKRIDDLE}");
                 yuanxiao.LoginMoudle status = new yuanxiao.LoginMoudle();
                 string gotPname = dbwork.SelectSingle("Pname", "RiddleGroup", $" GID={CHECKRIDDLE}");//查询对应题组号用户ID的值，如果为0，那说明没有，如果有，就要查询到对应用户ID的名字并返回
                 if (gotPname != "")
@@ -33,7 +33,7 @@ namespace 元宵灯谜
                     status.status = "0";//没有人选调，就返回0
                 }
                 context.Response.Write(JsonConvert.SerializeObject(status));
-                logging.Infolog(typeof(isriddlegot), $"isriddlegot.ashx.ashx RETURN {JsonConvert.SerializeObject(status)}");
+                logging.Infolog(typeof(isriddlegot), $".ashx RETURN {JsonConvert.SerializeObject(status)}");
                 context.Response.End();
             }
             catch (Exception ex)

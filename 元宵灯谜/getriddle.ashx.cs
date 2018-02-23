@@ -26,7 +26,7 @@ namespace 元宵灯谜
                 string PAGE = context.Request.Form["PAGE"];
                 string LIMIT = context.Request.Form["LIMIT"];
                 string LASTGID = context.Request.Form["LASTGID"];
-                logging.Infolog(typeof(getriddle), $"getriddle.ashx GET PAGE={PAGE},LIMIT={LIMIT},LASTGID={LASTGID}");
+                logging.Infolog(typeof(getriddle), $" GET PAGE={PAGE},LIMIT={LIMIT},LASTGID={LASTGID}");
 
                 string[] RiddleListTmp = pushRiddle(PAGE, LIMIT, LASTGID).Split('~');
                 yuanxiao.riddleGet rg = new yuanxiao.riddleGet();
@@ -53,7 +53,7 @@ namespace 元宵灯谜
                 rg.lastgid = RiddleListTmp[RiddleListTmp.Length - 1];
                 string val = JsonConvert.SerializeObject(rg);
                 context.Response.Write(val);
-                logging.Infolog(typeof(getriddle), $"getriddle.ashx RETURN {val}");
+                logging.Infolog(typeof(getriddle), $" RETURN {val}");
                 context.Response.End();
             }
             catch (Exception ex)

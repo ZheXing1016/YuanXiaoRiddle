@@ -23,13 +23,14 @@ namespace yuanxiao
                 Initilazition.Init();
                 riddleUncompeletedMoudle rum = new riddleUncompeletedMoudle();
                 string username = context.Request.Form["UNCOMPELETED"];
-                logging.Infolog(typeof(uncompeletedCheck), $"uncompeletedCheck.ashx GET UNCOMPELETED={username}");
+                logging.Infolog(typeof(uncompeletedCheck), $"GET UNCOMPELETED={username}");
                 string uncompeleted = isNoPauseAnswer(username);
                 if (uncompeleted == "")
                 {
                     rum.RID = "";
                     rum.PNUM = "";
                     rum.COSTTIME = "";
+
                 }
                 else
                 {
@@ -40,7 +41,7 @@ namespace yuanxiao
                 }
                 string reval = JsonConvert.SerializeObject(rum);
                 context.Response.Write(reval);
-                logging.Infolog(typeof(uncompeletedCheck), $"uncompeletedCheck.ashx RETURN {reval}");
+                logging.Infolog(typeof(uncompeletedCheck), $"RETURN {reval}");
                 context.Response.End();
             }
             catch (Exception ex)
@@ -73,9 +74,9 @@ namespace yuanxiao
                 {
 
                     string[] strtmp = RrecordStringList.Rows[0][0].ToString().Split('~');//只看最后一次提交的那组题目是否存在未答完的情况
-                    for (int j = 1; j <= strtmp.Length; j++)//遍历数组，找到第一个没有答题的位置
+                    for (int j = 0; j < strtmp.Length; j++)//遍历数组，找到第一个没有答题的位置
                     {
-                        if (strtmp[j-1] == "")
+                        if (strtmp[j] == "")
                         {
                             return RrecordStringList.Rows[0][1] + "~" + j+"~"+RrecordStringList.Rows[0][2];
                         }
