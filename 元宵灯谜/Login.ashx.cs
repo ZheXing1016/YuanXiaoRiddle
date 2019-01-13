@@ -18,7 +18,7 @@ namespace yuanxiao
             Logging logging = new Logging();
             try
             {
-                Initilazition.Init();
+                
                 string Username = context.Request.Form["USER"];
                 string Password = context.Request.Form["PASSWORD"];
                 logging.Infolog(typeof(Login1), $" GET Username={Username},Password={Password}");

@@ -20,14 +20,14 @@ namespace yuanxiao
             Logging logging = new Logging();
             try
             {
-                Initilazition.Init();
+                
                 riddleUncompeletedMoudle rum = new riddleUncompeletedMoudle();
                 string username = context.Request.Form["UNCOMPELETED"];
                 logging.Infolog(typeof(uncompeletedCheck), $"GET UNCOMPELETED={username}");
                 string uncompeleted = isNoPauseAnswer(username);
                 if (uncompeleted == "")
                 {
-                    rum.RID = "";
+                    rum.GID = "";
                     rum.PNUM = "";
                     rum.COSTTIME = "";
 
@@ -35,8 +35,16 @@ namespace yuanxiao
                 else
                 {
                     string[] rumtmp = uncompeleted.Split('~');
-                    rum.RID = rumtmp[0];
-                    rum.PNUM = rumtmp[1];
+                    rum.GID = rumtmp[0];
+                    if(rumtmp[1]=="0")
+                    {
+                        rum.PNUM = "";
+                    }
+                    else
+                    {
+                        rum.PNUM = rumtmp[1];
+                    }
+                    
                     rum.COSTTIME = rumtmp[2];
                 }
                 string reval = JsonConvert.SerializeObject(rum);

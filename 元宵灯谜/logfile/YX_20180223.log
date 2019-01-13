@@ -23,3 +23,103 @@
 2018-02-23 11:56:36,217 [7] INFO  元宵灯谜.result - RETURN {"result":"您在00:26:00完成了该组灯谜的解答，共答对了3题目。请再接再厉，要解出一组所有的灯谜才可以拿到公会准备的奖品哦ヾ(?°?°?)??"}
 2018-02-23 11:56:55,826 [5] INFO  元宵灯谜.result -  GET GID =3
 2018-02-23 11:56:56,419 [5] INFO  元宵灯谜.result - RETURN {"result":"天啦噜，您花了00:58:00居然一道题目都没有解开，系统为您默哀1秒钟。好了，再接再厉吧，或者找老应伯要点安慰奖什么的，本系统为您作证！?(^_-)"}
+2018-02-23 12:42:14,912 [7] INFO  元宵灯谜.chooseriddle -  GET GID=7,USER=test2
+2018-02-23 12:42:15,737 [7] INFO  元宵灯谜.chooseriddle -  RETURN {"status":"ok"}
+2018-02-23 12:42:43,958 [5] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test2
+2018-02-23 12:42:44,153 [5] INFO  yuanxiao.uncompeletedCheck - RETURN {"RID":"7","PNUM":"0","COSTTIME":"00:00"}
+2018-02-23 13:49:01,539 [5] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test1
+2018-02-23 13:49:02,120 [5] ERROR yuanxiao.uncompeletedCheck - 索引超出了数组界限。
+2018-02-23 13:49:13,387 [5] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test
+2018-02-23 13:49:13,716 [5] INFO  yuanxiao.uncompeletedCheck - RETURN {"RID":"3","PNUM":"1","COSTTIME":"00:58:00"}
+2018-02-23 13:49:25,545 [5] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test
+2018-02-23 13:49:25,724 [5] INFO  yuanxiao.uncompeletedCheck - RETURN {"RID":"3","PNUM":"0","COSTTIME":"00:58:00"}
+2018-02-23 13:49:35,677 [8] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test
+2018-02-23 13:49:35,852 [8] INFO  yuanxiao.uncompeletedCheck - RETURN {"RID":"3","PNUM":"1","COSTTIME":"00:58:00"}
+2018-02-23 13:53:48,684 [5] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test3
+2018-02-23 13:54:07,592 [5] INFO  yuanxiao.uncompeletedCheck - RETURN {"RID":"","PNUM":"","COSTTIME":""}
+2018-02-23 13:54:14,281 [5] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test3
+2018-02-23 13:54:42,881 [5] INFO  yuanxiao.uncompeletedCheck - RETURN {"RID":"","PNUM":"","COSTTIME":""}
+2018-02-23 13:55:55,660 [5] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test2
+2018-02-23 13:55:55,836 [5] INFO  yuanxiao.uncompeletedCheck - RETURN {"RID":"","PNUM":"","COSTTIME":""}
+2018-02-23 13:56:10,008 [5] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test
+2018-02-23 13:56:10,192 [5] INFO  yuanxiao.uncompeletedCheck - RETURN {"RID":"3","PNUM":"1","COSTTIME":"00:58:00"}
+2018-02-23 14:10:39,856 [5] INFO  yuanxiao.Login1 -  GET Username=test3,Password=test3
+2018-02-23 15:32:06,850 [5] INFO  元宵灯谜.chooseriddle -  GET GID=6,USER=test2
+2018-02-23 15:32:07,694 [5] INFO  元宵灯谜.chooseriddle -  RETURN {"status":"ok"}
+2018-02-23 15:32:41,733 [5] INFO  元宵灯谜.answering -  GET GID=6,PNUM=1,ANSWER=A,COSTTIME=00:57
+2018-02-23 15:33:11,731 [5] INFO  元宵灯谜.answering -  GET GID=6,PNUM=0,ANSWER=A,COSTTIME=00:57
+2018-02-23 15:33:19,282 [5] INFO  元宵灯谜.answering -  DATA getNew
+2018-02-23 15:33:23,339 [5] INFO  元宵灯谜.answering -  RETURN {"rquestion":"我是第22题的谜面","rtips":"我是第22题的提示"}
+2018-02-23 15:34:04,954 [5] INFO  元宵灯谜.answering -  GET GID=6,PNUM=1,ANSWER=A,COSTTIME=00:27
+2018-02-23 15:34:47,272 [8] INFO  元宵灯谜.answering -  GET GID=6,PNUM=1,ANSWER=A,COSTTIME=00:27
+2018-02-23 15:35:52,479 [5] INFO  元宵灯谜.answering -  GET GID=6,PNUM=1,ANSWER=A,COSTTIME=00:27
+2018-02-23 15:36:03,504 [5] INFO  元宵灯谜.answering -  DATA ~~~~ ->A~~~~ 
+2018-02-23 15:36:03,795 [5] INFO  元宵灯谜.answering -  RETURN {"rquestion":"我是第23题的谜面","rtips":"我是第23题的提示"}
+2018-02-23 15:37:26,220 [7] INFO  元宵灯谜.answering -  GET GID=6,PNUM=2,ANSWER=B,COSTTIME=00:37
+2018-02-23 15:37:26,413 [7] INFO  元宵灯谜.answering -  DATA A~~~~ ->A~B~~~ 
+2018-02-23 15:37:26,598 [7] INFO  元宵灯谜.answering -  RETURN {"rquestion":"我是第24题的谜面","rtips":"我是第24题的提示"}
+2018-02-23 15:37:38,307 [5] INFO  元宵灯谜.answering -  GET GID=6,PNUM=3,ANSWER=C,COSTTIME=00:47
+2018-02-23 15:37:38,518 [5] INFO  元宵灯谜.answering -  DATA A~B~~~ ->A~B~C~~ 
+2018-02-23 15:37:38,722 [5] INFO  元宵灯谜.answering -  RETURN {"rquestion":"我是第25题的谜面","rtips":"我是第25题的提示"}
+2018-02-23 15:37:55,867 [13] INFO  元宵灯谜.answering -  GET GID=6,PNUM=4,ANSWER=D,COSTTIME=00:47
+2018-02-23 15:37:56,052 [13] INFO  元宵灯谜.answering -  DATA A~B~C~~ ->A~B~C~D~ 
+2018-02-23 15:37:56,226 [13] INFO  元宵灯谜.answering -  RETURN {"rquestion":"我是第26题的谜面","rtips":"我是第26题的提示"}
+2018-02-23 15:38:07,306 [5] INFO  元宵灯谜.answering -  GET GID=6,PNUM=5,ANSWER=AA,COSTTIME=00:47
+2018-02-23 15:38:07,498 [5] INFO  元宵灯谜.answering -  DATA A~B~C~D~ ->A~B~C~D~AA
+2018-02-23 15:38:07,498 [5] INFO  元宵灯谜.answering -  RETURN {"rquestion":"","rtips":""}
+2018-02-23 15:38:46,396 [21] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test2
+2018-02-23 15:38:46,587 [21] INFO  yuanxiao.uncompeletedCheck - RETURN {"GID":"6","PNUM":"3","COSTTIME":"00:47"}
+2018-02-23 15:38:52,882 [5] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test3
+2018-02-23 15:38:53,064 [5] INFO  yuanxiao.uncompeletedCheck - RETURN {"GID":"","PNUM":"-1","COSTTIME":""}
+2018-02-23 15:41:09,495 [5] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test3
+2018-02-23 15:41:10,131 [5] INFO  yuanxiao.uncompeletedCheck - RETURN {"GID":"7","PNUM":"","COSTTIME":"00:00"}
+2018-02-23 15:41:17,912 [5] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test2
+2018-02-23 15:41:18,088 [5] INFO  yuanxiao.uncompeletedCheck - RETURN {"GID":"6","PNUM":"3","COSTTIME":"00:47"}
+2018-02-23 15:41:30,920 [5] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test2
+2018-02-23 15:41:31,104 [5] INFO  yuanxiao.uncompeletedCheck - RETURN {"GID":"","PNUM":"","COSTTIME":""}
+2018-02-23 19:03:09,898 [9] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test
+2018-02-23 19:03:10,472 [9] INFO  yuanxiao.uncompeletedCheck - RETURN {"GID":"3","PNUM":"4","COSTTIME":"00:58:00"}
+2018-02-23 19:10:20,545 [36] INFO  元宵灯谜.chooseriddle -  GET GID=5,USER=test2
+2018-02-23 19:10:20,675 [36] INFO  元宵灯谜.chooseriddle -  RETURN {"status":"ok"}
+2018-02-23 19:10:52,596 [27] INFO  元宵灯谜.answering -  GET GID=5,PNUM=0,ANSWER=WEWE,COSTTIME=00:44
+2018-02-23 19:10:52,635 [27] INFO  元宵灯谜.answering -  DATA getNew
+2018-02-23 19:10:52,715 [27] INFO  元宵灯谜.answering -  RETURN {"rquestion":"我是第18题的谜面","rtips":"我是第18题的提示"}
+2018-02-23 19:11:07,907 [27] INFO  元宵灯谜.answering -  GET GID=5,PNUM=1,ANSWER=WEWE,COSTTIME=00:44
+2018-02-23 19:11:07,988 [27] INFO  元宵灯谜.answering -  DATA ~~~~ ->WEWE~~~~ 
+2018-02-23 19:11:08,069 [27] INFO  元宵灯谜.answering -  RETURN {"rquestion":"我是第19题的谜面","rtips":"我是第19题的提示"}
+2018-02-23 19:11:18,962 [27] INFO  元宵灯谜.answering -  GET GID=5,PNUM=2,ANSWER=WEEE,COSTTIME=00:44
+2018-02-23 19:11:19,041 [27] INFO  元宵灯谜.answering -  DATA WEWE~~~~ ->WEWE~WEEE~~~ 
+2018-02-23 19:11:19,120 [27] INFO  元宵灯谜.answering -  RETURN {"rquestion":"我是第20题的谜面","rtips":"我是第20题的提示"}
+2018-02-23 19:11:28,631 [27] INFO  元宵灯谜.answering -  GET GID=5,PNUM=3,ANSWER=ASAS,COSTTIME=00:44
+2018-02-23 19:11:28,712 [27] INFO  元宵灯谜.answering -  DATA WEWE~WEEE~~~ ->WEWE~WEEE~ASAS~~ 
+2018-02-23 19:11:28,792 [27] INFO  元宵灯谜.answering -  RETURN {"rquestion":"我是第21题的谜面","rtips":"我是第21题的提示"}
+2018-02-23 19:11:46,276 [27] INFO  元宵灯谜.answering -  GET GID=5,PNUM=4,ANSWER=QQQ,COSTTIME=00:44
+2018-02-23 19:11:46,357 [27] INFO  元宵灯谜.answering -  DATA WEWE~WEEE~ASAS~~ ->WEWE~WEEE~ASAS~QQQ~ 
+2018-02-23 19:11:46,435 [27] INFO  元宵灯谜.answering -  RETURN {"rquestion":"我是第22题的谜面","rtips":"我是第22题的提示"}
+2018-02-23 19:13:44,055 [27] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test2
+2018-02-23 19:13:44,136 [27] INFO  yuanxiao.uncompeletedCheck - RETURN {"GID":"","PNUM":"","COSTTIME":""}
+2018-02-23 19:14:12,258 [27] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test2
+2018-02-23 19:17:38,512 [6] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test2
+2018-02-23 19:17:38,902 [6] INFO  yuanxiao.uncompeletedCheck - RETURN {"GID":"","PNUM":"","COSTTIME":""}
+2018-02-23 19:17:56,767 [6] INFO  元宵灯谜.chooseriddle -  GET GID=5,USER=test2
+2018-02-23 19:17:56,889 [6] INFO  元宵灯谜.chooseriddle -  RETURN {"status":"ok"}
+2018-02-23 19:18:12,364 [6] INFO  元宵灯谜.answering -  GET GID=5,PNUM=0,ANSWER=QQQ,COSTTIME=00:44
+2018-02-23 19:18:12,404 [6] INFO  元宵灯谜.answering -  DATA getNew
+2018-02-23 19:18:12,507 [6] INFO  元宵灯谜.answering -  RETURN {"rquestion":"我是第18题的谜面","rtips":"我是第18题的提示"}
+2018-02-23 19:18:17,444 [6] INFO  元宵灯谜.answering -  GET GID=5,PNUM=0,ANSWER=QQQ,COSTTIME=00:44
+2018-02-23 19:18:17,485 [6] INFO  元宵灯谜.answering -  DATA getNew
+2018-02-23 19:18:17,566 [6] INFO  元宵灯谜.answering -  RETURN {"rquestion":"我是第18题的谜面","rtips":"我是第18题的提示"}
+2018-02-23 19:18:20,408 [7] INFO  元宵灯谜.answering -  GET GID=5,PNUM=1,ANSWER=QQQ,COSTTIME=00:44
+2018-02-23 19:18:20,487 [7] INFO  元宵灯谜.answering -  DATA ~~~~->QQQ~~~~
+2018-02-23 19:18:20,568 [7] INFO  元宵灯谜.answering -  RETURN {"rquestion":"我是第19题的谜面","rtips":"我是第19题的提示"}
+2018-02-23 19:18:31,136 [6] INFO  元宵灯谜.answering -  GET GID=5,PNUM=2,ANSWER=WEWE,COSTTIME=00:44
+2018-02-23 19:18:31,217 [6] INFO  元宵灯谜.answering -  DATA QQQ~~~~->QQQ~WEWE~~~
+2018-02-23 19:18:31,297 [6] INFO  元宵灯谜.answering -  RETURN {"rquestion":"我是第20题的谜面","rtips":"我是第20题的提示"}
+2018-02-23 19:18:40,254 [6] INFO  元宵灯谜.answering -  GET GID=5,PNUM=3,ANSWER=QQS,COSTTIME=00:44
+2018-02-23 19:18:40,333 [6] INFO  元宵灯谜.answering -  DATA QQQ~WEWE~~~->QQQ~WEWE~QQS~~
+2018-02-23 19:18:40,418 [6] INFO  元宵灯谜.answering -  RETURN {"rquestion":"我是第21题的谜面","rtips":"我是第21题的提示"}
+2018-02-23 19:18:47,280 [6] INFO  元宵灯谜.answering -  GET GID=5,PNUM=4,ANSWER=SDEW,COSTTIME=00:44
+2018-02-23 19:18:47,359 [6] INFO  元宵灯谜.answering -  DATA QQQ~WEWE~QQS~~->QQQ~WEWE~QQS~SDEW~
+2018-02-23 19:18:47,438 [6] INFO  元宵灯谜.answering -  RETURN {"rquestion":"我是第22题的谜面","rtips":"我是第22题的提示"}
+2018-02-23 19:19:08,218 [6] INFO  yuanxiao.uncompeletedCheck - GET UNCOMPELETED=test2
+2018-02-23 19:19:08,305 [6] INFO  yuanxiao.uncompeletedCheck - RETURN {"GID":"5","PNUM":"4","COSTTIME":"00:44"}

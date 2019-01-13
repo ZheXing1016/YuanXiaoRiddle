@@ -16,7 +16,7 @@ namespace 元宵灯谜
             Logging logging = new Logging();
             try
             {
-                yuanxiao.Initilazition.Init();
+                
                 string GID = context.Request.Form["GID"];
                 string USER = context.Request.Form["USER"];
                 logging.Infolog(typeof(chooseriddle), $" GET GID={GID},USER={USER}");

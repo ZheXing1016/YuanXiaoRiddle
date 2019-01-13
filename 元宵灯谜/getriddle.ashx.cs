@@ -22,7 +22,7 @@ namespace 元宵灯谜
                 yuanxiao.Initilazition.takeMaxRowsCount();
                 /*yuanxiao.Initilazition.MaxRowsCount = 4*/
 
-                yuanxiao.Initilazition.Init();
+               
                 string PAGE = context.Request.Form["PAGE"];
                 string LIMIT = context.Request.Form["LIMIT"];
                 string LASTGID = context.Request.Form["LASTGID"];

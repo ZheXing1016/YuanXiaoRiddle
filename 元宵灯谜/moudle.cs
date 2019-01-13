@@ -12,7 +12,7 @@ namespace yuanxiao
 
     public class riddleUncompeletedMoudle
     {
-        public string RID { set; get; }
+        public string GID { set; get; }
         public string PNUM { set; get; }
         public string COSTTIME { set; get; }
     }
@@ -30,17 +30,19 @@ namespace yuanxiao
     }
 
 
-    
+
 
     public class riddleContentGet
     {
         public string rquestion { set; get; }
         public string rtips { set; get; }
+        public string coanswer{ set; get; }
     }
 
     public class resultModule
     {
         public string result { set; get; }
+        public string status { set; get; }
     }
    
 }

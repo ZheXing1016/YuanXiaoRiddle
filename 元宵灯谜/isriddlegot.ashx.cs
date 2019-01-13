@@ -19,7 +19,7 @@ namespace 元宵灯谜
             Logging logging = new Logging();
             try
             {
-                yuanxiao.Initilazition.Init();
+               
                 string CHECKRIDDLE = context.Request.Form["CHECKRIDDLE"];//获取题组号
                 logging.Infolog(typeof(isriddlegot), $" GET CHECKRIDDLE={CHECKRIDDLE}");
                 yuanxiao.LoginMoudle status = new yuanxiao.LoginMoudle();

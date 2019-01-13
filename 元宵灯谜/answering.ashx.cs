@@ -19,7 +19,7 @@ namespace 元宵灯谜
             Logging logging = new Logging();
             try
             {
-                yuanxiao.Initilazition.Init();
+
                 string GID = context.Request.Form["GID"];
                 string PNUM = context.Request.Form["PNUM"];
                 string ANSWER = context.Request.Form["ANSWER"];
@@ -28,7 +28,7 @@ namespace 元宵灯谜
                 int updateconut = 0;
                 if (PNUM == "0")
                 {
-                    updateconut = dbwork.UpdateSet("Rrecord`Lasttime", $"~~~~ `{DateTime.Now.ToString()}", "RiddleGroup", $" GID={GID}");
+                    updateconut = dbwork.UpdateSet("Rrecord`Lasttime", $"~~~~`{DateTime.Now.ToString()}", "RiddleGroup", $" GID={GID}");
                     logging.Infolog(typeof(answering), $" DATA getNew");
                 }
                 else
@@ -37,7 +37,7 @@ namespace 元宵灯谜
                         "RiddleGroup", $" GID={GID}");//先获取原先的答案字符串
                     int nowIndex = Convert.ToInt32(PNUM);
                     string nowresult = "";
-                    if (ANSWER == "U")
+                    if (ANSWER != "U")
                     {
                         nowresult = makeAnswerStr(preresult, nowIndex, ANSWER);
                         updateconut = dbwork.UpdateSet("Rrecord`Rcosttime`Lasttime",
@@ -55,12 +55,14 @@ namespace 元宵灯谜
                     DataTable riddleContent = dbwork.SelectMutily($"select Rquestion,Rtip from Riddle where Rpnum={nextpnum}");
                     rcg.rquestion = riddleContent.Rows[0][0].ToString();
                     rcg.rtips = riddleContent.Rows[0][1].ToString();
+                    rcg.coanswer = getCustomOldAnswer(GID, PNUM);
 
                 }
                 else
                 {
                     rcg.rquestion = "";
                     rcg.rtips = "";
+                    rcg.coanswer = "";
                 }
 
                 string restr = JsonConvert.SerializeObject(rcg);
@@ -83,16 +85,25 @@ namespace 元宵灯谜
 
         string makeAnswerStr(string oldAnswerStr, int Pnum, string NewAnswer)
         {
+
             string[] strtmp = oldAnswerStr.Split('~');
             strtmp[Pnum - 1] = NewAnswer;
             string reval = "";
-            for (int i = 0; i < Pnum; i++)
+            for (int i = 0; i < strtmp.Length; i++)
             {
                 reval += $"{strtmp[i]}~";
             }
             return reval.Substring(0, reval.Length - 1);
         }
 
+
+        string getCustomOldAnswer(string GID, string PNUM)
+        {
+
+            string[] oldAnswers = dbwork.SelectSingle("Rrecord", "RiddleGroup", $"GID={GID}").Split('~');
+            return oldAnswers[Convert.ToInt16(PNUM)];
+
+        }
 
 
 
